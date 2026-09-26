@@ -4,5 +4,21 @@ description: The plan for Salt and Light Electrical, stage by stage, with a date
 ---
 <div class="wrap page">
   <h1>Road to launch</h1>
-  <p class="lede">[[BUILD: full road to launch panel, phase 2]]</p>
+  <p class="lede">[[BUILD: short introduction to the drawing, phase 3]]</p>
+  {{{ diagram.full }}}
+
+  <section class="spec" aria-labelledby="stages-heading">
+    <h2 id="stages-heading">Each stage</h2>
+    <div class="spec__body">
+      {{> stage-notes }}
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="revisions-heading">
+    <h2 id="revisions-heading">Revision history</h2>
+    <div class="spec__body">
+      <p>Like a drawing, this page gets a new revision letter each time the plan changes.</p>
+      {{> revision-table }}
+    </div>
+  </section>
 </div>

@@ -1,0 +1,8 @@
+<ol class="stage-notes">
+  {{#each milestones.stages}}<li>
+    <h3>{{ ref }}. {{ title }}</h3>
+    <p class="stage-notes__meta">{{ when }}. {{#if isDone}}Done{{/if}}{{#if isCurrent}}Now{{/if}}{{#if isPlanned}}Planned{{/if}}.</p>
+    {{#if explain}}<p>{{ explain }}</p>{{/if}}
+  </li>
+  {{/each}}
+</ol>

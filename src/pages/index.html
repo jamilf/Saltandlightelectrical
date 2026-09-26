@@ -5,12 +5,29 @@ description: Jamil Flores is building Salt and Light Electrical in public, from 
 schema: website person
 ---
 <div class="wrap page">
-  <h1>Salt and Light Electrical</h1>
-  <p class="lede">[[JAMIL: your hero subline, reworked from the draft in the brief]]</p>
-  <p>Planned to open in {{ site.launchYear }}, once licensed.</p>
+  <section class="hero" aria-labelledby="hero-heading">
+    <h1 id="hero-heading">Salt and Light Electrical</h1>
+    <p class="lede">[[JAMIL: your hero subline, reworked from the draft in the brief]]</p>
+    <p class="hero__target">Planned to open in {{ site.launchYear }}, once licensed.</p>
+    <p class="button-row">
+      <a class="button button--primary" href="#follow-the-build">Follow the build</a>
+      <a class="button button--secondary" href="/journal/">Read the journal</a>
+    </p>
+    <h2 class="visually-hidden">Road to launch</h2>
+    {{{ diagram.compact }}}
+  </section>
 
-  <section id="follow-the-build" aria-labelledby="follow-heading">
+  <section class="spec" aria-labelledby="status-heading">
+    <h2 id="status-heading">Where things are at</h2>
+    <div class="spec__body">
+      {{> status-block }}
+    </div>
+  </section>
+
+  <section class="spec" id="follow-the-build" aria-labelledby="follow-heading">
     <h2 id="follow-heading">Follow the build</h2>
-    <p>[[BUILD: newsletter form, phase 3]]</p>
+    <div class="spec__body">
+      <p>[[BUILD: newsletter form, phase 3]]</p>
+    </div>
   </section>
 </div>

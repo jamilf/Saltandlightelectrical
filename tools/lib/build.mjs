@@ -5,6 +5,7 @@ import { loadConfig, statusNoticeText } from './config.mjs';
 import { headersFile, llmsTxt, robotsTxt, rssXml, sitemapXml } from './feeds.mjs';
 import { parseFrontMatter } from './frontmatter.mjs';
 import { loadPosts } from './journal.mjs';
+import { renderDiagram } from './diagram.mjs';
 import { loadMilestones } from './milestones.mjs';
 import { jsonLdScript, pageTitle, robotsFor } from './seo.mjs';
 import { render } from './template.mjs';
@@ -40,7 +41,11 @@ export function build(options = {}) {
     person: config.person,
     mode: { name: config.mode, quiet: config.mode === 'quiet', prelaunch: config.mode === 'prelaunch', live: config.mode === 'live' },
     notices: { ...config.notices, status: statusNoticeText(config) },
-    milestones: { ...milestones, latest },
+    milestones: {
+      ...milestones,
+      latest,
+      revisions: milestones.revisions.map((revision) => ({ ...revision, dateLabel: formatDate(revision.date) })),
+    },
     journal: {
       posts,
       latest: posts.slice(0, 3),
@@ -51,6 +56,10 @@ export function build(options = {}) {
     analytics: config.analytics,
     followPath: config.followPath,
     assets,
+    diagram: {
+      full: renderDiagram(milestones, config, { variant: 'full' }),
+      compact: renderDiagram(milestones, config, { variant: 'compact', link: true }),
+    },
   };
 
   const written = [];
@@ -199,6 +208,7 @@ function assetPaths(root, config) {
     js: versioned('js/site.js'),
     font400: '/assets/fonts/poppins-400.woff2',
     favicon: existsSync(join(root, 'src', 'static', 'favicon.svg')) ? '/favicon.svg' : null,
+    faviconIco: existsSync(join(root, 'src', 'static', 'favicon.ico')) ? '/favicon.ico' : null,
     appleTouchIcon: existsSync(join(root, 'src', 'static', 'apple-touch-icon.png')) ? '/apple-touch-icon.png' : null,
     analyticsToken: config.analytics.cloudflareWebAnalyticsToken,
   };

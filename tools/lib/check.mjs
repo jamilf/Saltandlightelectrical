@@ -5,7 +5,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { allowedZoneTexts, liveProblems, loadConfig } from './config.mjs';
-import { byName, findAll, parseHtml, textOf, walk } from './html.mjs';
+import { byName, decodeEntities, findAll, parseHtml, textOf, walk } from './html.mjs';
 import { PLACEHOLDER_PATTERN, SiteError, normalizeText, walkFiles } from './util.mjs';
 
 const TEXT_ATTRIBUTES = ['alt', 'title', 'aria-label', 'placeholder', 'value', 'content', 'label'];
@@ -451,7 +451,7 @@ function checkPlaceholders({ distDir, files, report, complete }) {
   const found = new Map();
   for (const file of files.filter((name) => /\.(html|xml|txt)$/.test(name) || name === '_headers')) {
     const text = readFileSync(join(distDir, file), 'utf8');
-    for (const [placeholder] of text.matchAll(PLACEHOLDER_PATTERN)) {
+    for (const [placeholder] of decodeEntities(text).matchAll(PLACEHOLDER_PATTERN)) {
       if (!found.has(placeholder)) found.set(placeholder, new Set());
       found.get(placeholder).add(file);
     }

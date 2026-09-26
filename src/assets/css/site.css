@@ -41,6 +41,9 @@
   --wire: #9dc1ee;        /* light-blue strokes and text on blueprint, 7.4:1 */
   --field: #74839a;       /* form field borders, 3.9:1 on paper */
   --alert: #a32a1c;       /* error text only, 7.2:1 on paper */
+  --filament-pressed: #e6a500; /* primary button hover, blueprint text 6.4:1 */
+  --tint: #eaf1fa;        /* secondary button hover, blueprint text 12.1:1 */
+  --disabled: #e4e7eb;    /* disabled controls, ink-soft text 5.7:1 */
   --core-active: #7b4a2a;
   --core-neutral: #1d5fb4;
   --core-earth-green: #2e8b3e;
@@ -176,6 +179,18 @@ img {
   height: auto;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 .wrap {
   width: 100%;
   max-width: var(--page-max);
@@ -261,15 +276,32 @@ img {
     'nav nav';
   gap: var(--space-3) var(--space-4);
   align-items: center;
-  padding-block: var(--space-4);
+  padding-block: var(--space-4) var(--space-2);
 }
 
 .brand {
   grid-area: brand;
+  display: inline-flex;
+  gap: var(--space-3);
+  align-items: center;
+  justify-self: start;
   color: var(--blueprint);
   font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
+}
+
+.brand__name span {
+  display: block;
+}
+
+.mark {
+  flex: none;
+  color: var(--blueprint);
+}
+
+.mark circle {
+  fill: var(--salt);
 }
 
 .site-header__follow {
@@ -298,6 +330,11 @@ img {
   text-decoration: none;
 }
 
+.site-nav a:hover {
+  color: var(--blueprint);
+  text-decoration: underline;
+}
+
 .site-nav a[aria-current] {
   color: var(--blueprint);
   text-decoration: underline;
@@ -305,10 +342,33 @@ img {
   text-underline-offset: 0.45em;
 }
 
+@media (max-width: 23.75em) {
+  .brand {
+    gap: var(--space-2);
+    font-size: var(--text-small);
+  }
+
+  .site-header__follow {
+    padding-inline: var(--space-3);
+    font-size: var(--text-small);
+  }
+
+  .site-nav ul {
+    gap: 0 var(--space-4);
+  }
+}
+
+@media (min-width: 48em) {
+  .brand__name span {
+    display: inline;
+  }
+}
+
 @media (min-width: 60em) {
   .site-header__inner {
     grid-template-columns: auto 1fr auto;
     grid-template-areas: 'brand nav follow';
+    padding-block: var(--space-4);
   }
 
   .site-nav ul {
@@ -329,6 +389,7 @@ img {
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.2;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
 }
@@ -339,10 +400,245 @@ img {
   color: var(--blueprint);
 }
 
+.button--primary:hover,
+.button--primary.is-hover {
+  background: var(--filament-pressed);
+  border-color: var(--filament-pressed);
+}
+
 .button--secondary {
   background: var(--paper);
   border-color: var(--blueprint);
   color: var(--blueprint);
+}
+
+.button--secondary:hover,
+.button--secondary.is-hover {
+  background: var(--tint);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button.is-focus {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.button:disabled,
+.button[aria-disabled='true'] {
+  background: var(--disabled);
+  border-color: var(--disabled);
+  color: var(--ink-soft);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block: var(--space-5);
+}
+
+@media (max-width: 29.99em) {
+  .button-row .button {
+    flex: 1 1 100%;
+  }
+}
+
+/* ---------- Forms ---------- */
+.form-panel {
+  max-width: 36rem;
+  padding: var(--space-5);
+  background: var(--paper);
+  border-radius: var(--radius-surface);
+  box-shadow: var(--shadow-raised);
+}
+
+@media (min-width: 48em) {
+  .form-panel {
+    padding: var(--space-6);
+  }
+}
+
+.form-panel > :last-child {
+  margin-bottom: 0;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.field__label {
+  font-weight: 500;
+}
+
+.field__hint {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+.field__error {
+  margin: 0;
+  color: var(--alert);
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  max-width: 30rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.75rem;
+  background: var(--paper);
+  border: 1.5px solid var(--field);
+  border-radius: var(--radius-control);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.select {
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230a2b5e' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-position: right 0.9rem center;
+  background-repeat: no-repeat;
+}
+
+.input:hover,
+.select:hover,
+.textarea:hover {
+  border-color: var(--blueprint);
+}
+
+.input:focus-visible,
+.select:focus-visible,
+.textarea:focus-visible,
+.input.is-focus {
+  border-color: var(--blueprint);
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.field--error .input,
+.field--error .select,
+.field--error .textarea,
+[aria-invalid='true'] {
+  border-color: var(--alert);
+  border-width: 2px;
+}
+
+.input:disabled,
+.select:disabled,
+.textarea:disabled {
+  background: var(--disabled);
+  border-color: var(--disabled);
+  color: var(--ink-soft);
+  cursor: not-allowed;
+}
+
+/* Honeypot: off screen for people, still in the form for bots. */
+.hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-message {
+  margin-block: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--salt);
+  border-left: 3px solid var(--blueprint);
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+  font-weight: 500;
+}
+
+.form-message--error {
+  border-left-color: var(--alert);
+  color: var(--alert);
+}
+
+/* ---------- Status block: where things are at ---------- */
+.status-block {
+  max-width: var(--measure);
+  margin: 0 0 var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+.status-block > div {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.status-block dt {
+  padding-top: 0.15em;
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+.status-block dd {
+  margin: 0;
+}
+
+@media (max-width: 29.99em) {
+  .status-block > div {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* ---------- Home hero ---------- */
+.hero__target {
+  color: var(--ink-soft);
+}
+
+.hero .button-row {
+  margin-bottom: var(--space-6);
+}
+
+/* ---------- Specification layout: a hairline, the heading on the left, the text beside it ---------- */
+.spec {
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--rule);
+}
+
+.spec > h2 {
+  font-size: var(--step-1);
+}
+
+@media (min-width: 60em) {
+  .spec {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .spec > h2 {
+    margin: 0;
+  }
+}
+
+.spec__body > :last-child {
+  margin-bottom: 0;
 }
 
 /* ---------- Notes: safety note and contact disclaimer ---------- */
@@ -357,6 +653,424 @@ img {
 
 .note p:last-child {
   margin-bottom: 0;
+}
+
+/* ---------- Road to launch: the single-line diagram ---------- */
+.sld {
+  --live: #ffffff;
+  --dead: var(--wire);
+  --sheet-rule: rgba(157, 193, 238, 0.4);
+  margin-block: var(--space-6);
+  padding: var(--space-2);
+  background: var(--blueprint);
+  border-radius: var(--radius-sheet);
+  box-shadow: var(--shadow-raised);
+  color: var(--live);
+  font-family: var(--font-drawing);
+  font-size: 0.9375rem;
+  line-height: 1.35;
+}
+
+.sld__sheet {
+  padding: var(--space-5) var(--space-4);
+  border: 1px solid var(--sheet-rule);
+}
+
+.sld p {
+  max-width: none;
+  margin: 0;
+}
+
+.sld a {
+  color: var(--live);
+}
+
+.sld :focus-visible {
+  outline-color: var(--live);
+}
+
+.sld__stages {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Narrow screens: the diagram runs top to bottom, labels beside it. */
+.sld__stage {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  column-gap: var(--space-4);
+}
+
+.sld__line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sld__wire {
+  position: relative;
+  flex: 1 1 0;
+  width: 2px;
+  min-height: var(--space-3);
+  background: var(--dead);
+}
+
+.sld__live {
+  position: absolute;
+  inset: 0;
+  background: var(--live);
+  transform-origin: 50% 0;
+}
+
+.is-origin .sld__wire--in::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--live);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sld__symbol {
+  flex: none;
+  color: var(--dead);
+  transform: rotate(90deg);
+}
+
+.sld__symbol circle {
+  fill: var(--blueprint);
+}
+
+.is-done .sld__symbol {
+  color: var(--live);
+}
+
+.is-current .sld__symbol {
+  color: var(--filament);
+}
+
+.is-lit .sld__symbol circle {
+  fill: var(--filament);
+}
+
+.is-lit .sld__symbol {
+  color: var(--live);
+}
+
+.sld__label {
+  padding-block: var(--space-3);
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.sld__ref,
+.sld__when,
+.sld__state {
+  color: var(--wire);
+}
+
+.sld__title {
+  font-weight: 700;
+}
+
+.is-done .sld__state {
+  color: var(--live);
+}
+
+.is-current .sld__state {
+  color: var(--filament);
+  font-weight: 700;
+}
+
+.is-load .sld__wire--in {
+  flex: 0 0 var(--space-3);
+}
+
+.sld__stage--gap .sld__wire {
+  width: 0;
+  background: none;
+  border-left: 2px dashed var(--dead);
+}
+
+.sld--compact .sld__stage--collapsible {
+  display: none;
+}
+
+.sld--compact .sld__stage--summary,
+.sld--compact .sld__stage--gap {
+  display: grid;
+}
+
+.sld__footer {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--sheet-rule);
+}
+
+.sld__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  color: var(--wire);
+  list-style: none;
+}
+
+.sld__legend li {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.sld__legend svg {
+  stroke-width: 3;
+  transform: none;
+}
+
+.sld__legend .is-closed {
+  color: var(--live);
+}
+
+.sld__legend .is-closing {
+  color: var(--filament);
+}
+
+.title-block {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 1px 0 0 1px;
+}
+
+@media (max-width: 39.99em) {
+  .sld--compact .title-block div:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 40em) {
+  .title-block {
+    grid-template-columns: repeat(3, minmax(0, auto));
+  }
+}
+
+.title-block div {
+  margin: -1px 0 0 -1px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--sheet-rule);
+}
+
+.title-block dt {
+  color: var(--wire);
+  font-size: 0.875rem;
+}
+
+.title-block dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.sld__key {
+  display: grid;
+  gap: var(--space-4);
+  align-content: end;
+}
+
+/* Wide screens: the diagram runs left to right, labels under each switch. Eight stages need
+   about 1,040px before a word like "apprenticeship" has to break, so this starts at 75em. */
+@media (min-width: 75em) {
+  .sld__sheet {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .sld__stages {
+    display: grid;
+    grid-auto-columns: minmax(min-content, 1fr);
+    grid-auto-flow: column;
+  }
+
+  .sld__stage {
+    grid-template-columns: none;
+    grid-template-rows: 48px auto;
+  }
+
+  .sld__line {
+    flex-direction: row;
+  }
+
+  .sld__wire {
+    width: auto;
+    height: 2px;
+    min-height: 0;
+  }
+
+  .sld__wire--in,
+  .is-load .sld__wire--in {
+    flex: 0 0 var(--space-2);
+  }
+
+  .sld__live {
+    transform-origin: 0 50%;
+  }
+
+  .is-origin .sld__wire--in::before {
+    top: 50%;
+    left: 0;
+  }
+
+  .sld__symbol {
+    transform: none;
+  }
+
+  .sld__stages {
+    font-size: 0.875rem;
+  }
+
+  .sld__label {
+    padding: var(--space-3) var(--space-1) 0 var(--space-2);
+    overflow-wrap: normal;
+  }
+
+  .sld--compact .sld__stage--collapsible {
+    display: grid;
+  }
+
+  .sld--compact .sld__stage--summary,
+  .sld--compact .sld__stage--gap {
+    display: none;
+  }
+
+  .sld__footer {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 30rem);
+    align-items: end;
+  }
+
+  .sld--compact .sld__footer {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+}
+
+/* The one moment of motion: the energised path draws from the start to the current stage.
+   Timing classes come from the build: dl-3 is a 300ms delay, du-2 a 200ms duration,
+   and the m versions apply to the collapsed diagram on narrow screens. */
+@keyframes energise-down {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes energise-across {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sld__live {
+    animation: energise-down var(--mdu, var(--du, 300ms)) linear var(--mdl, var(--dl, 0ms)) both;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 75em) {
+  .sld__live {
+    animation-name: energise-across;
+    animation-duration: var(--du, 300ms);
+    animation-delay: var(--dl, 0ms);
+  }
+}
+
+.dl-0 { --dl: 0ms; }
+.dl-1 { --dl: 100ms; }
+.dl-2 { --dl: 200ms; }
+.dl-3 { --dl: 300ms; }
+.dl-4 { --dl: 400ms; }
+.dl-5 { --dl: 500ms; }
+.dl-6 { --dl: 600ms; }
+.dl-7 { --dl: 700ms; }
+.dl-8 { --dl: 800ms; }
+.dl-9 { --dl: 900ms; }
+.dl-10 { --dl: 1000ms; }
+.dl-11 { --dl: 1100ms; }
+.dl-12 { --dl: 1200ms; }
+.dl-13 { --dl: 1300ms; }
+.dl-14 { --dl: 1400ms; }
+.dl-15 { --dl: 1500ms; }
+.dl-16 { --dl: 1600ms; }
+.dl-17 { --dl: 1700ms; }
+.dl-18 { --dl: 1800ms; }
+.dl-19 { --dl: 1900ms; }
+.dl-20 { --dl: 2000ms; }
+.du-1 { --du: 100ms; }
+.du-2 { --du: 200ms; }
+.du-3 { --du: 300ms; }
+.du-4 { --du: 400ms; }
+.du-5 { --du: 500ms; }
+.mdl-0 { --mdl: 0ms; }
+.mdl-3 { --mdl: 300ms; }
+.mdl-6 { --mdl: 600ms; }
+.mdu-3 { --mdu: 300ms; }
+
+/* ---------- Road to launch page: stage notes and revision history ---------- */
+.stage-notes {
+  max-width: var(--measure);
+  padding: 0;
+  list-style: none;
+}
+
+.stage-notes li {
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+.stage-notes h3 {
+  margin-bottom: var(--space-2);
+}
+
+.stage-notes__meta {
+  margin-bottom: var(--space-2);
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+.stage-notes p:last-child {
+  margin-bottom: 0;
+}
+
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.revisions {
+  width: 100%;
+  max-width: 48rem;
+  border-collapse: collapse;
+  font-size: var(--text-small);
+}
+
+.revisions th,
+.revisions td {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.revisions th {
+  background: var(--paper);
+  font-weight: 500;
+}
+
+.revisions td:first-child {
+  font-weight: 600;
 }
 
 /* ---------- Journal ---------- */
@@ -381,6 +1095,11 @@ img {
   text-decoration: none;
 }
 
+.category-nav a:not([aria-current]):hover {
+  color: var(--blueprint);
+  text-decoration: underline;
+}
+
 .post-list {
   margin: 0;
   padding: 0;
@@ -388,19 +1107,23 @@ img {
 }
 
 .post-list__item {
-  padding-block: var(--space-5);
+  padding-block: var(--space-4);
   border-top: 1px solid var(--rule);
 }
 
 .post-list__date {
-  margin: 0 0 var(--space-1);
+  margin: 0;
   color: var(--ink-soft);
   font-size: var(--text-small);
 }
 
 .post-list__title {
-  margin-bottom: var(--space-2);
+  margin: var(--space-1) 0;
   font-size: var(--step-1);
+}
+
+.post-list__summary {
+  margin: 0;
 }
 
 .post__meta {
@@ -463,7 +1186,11 @@ img {
   font-size: var(--text-small);
 }
 
-.site-footer__name {
+.site-footer__brand {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  margin-bottom: var(--space-4);
   color: var(--blueprint);
   font-weight: 600;
 }
@@ -480,4 +1207,94 @@ img {
   display: inline-block;
   padding-block: var(--space-1);
   color: var(--ink);
+}
+
+.site-footer__meta {
+  margin: 0;
+}
+
+/* ---------- Styleguide only ---------- */
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: var(--space-4);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.swatch {
+  font-size: var(--text-small);
+}
+
+.swatch__chip {
+  height: 3.5rem;
+  margin-bottom: var(--space-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-control);
+}
+
+.swatch p {
+  margin: 0;
+}
+
+.chip-salt { background: var(--salt); }
+.chip-paper { background: var(--paper); }
+.chip-ink { background: var(--ink); }
+.chip-ink-soft { background: var(--ink-soft); }
+.chip-blueprint { background: var(--blueprint); }
+.chip-filament { background: var(--filament); }
+.chip-rule { background: var(--rule); }
+.chip-wire { background: var(--wire); }
+.chip-field { background: var(--field); }
+.chip-alert { background: var(--alert); }
+
+.specimen {
+  margin-bottom: var(--space-6);
+}
+
+.specimen--drawing {
+  padding: var(--space-4);
+  background: var(--blueprint);
+  border-radius: var(--radius-sheet);
+  color: var(--live, #ffffff);
+  font-family: var(--font-drawing);
+}
+
+.mark-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  align-items: center;
+  margin-bottom: var(--space-6);
+}
+
+.mark-row__dark {
+  padding: var(--space-4);
+  background: var(--blueprint);
+  border-radius: var(--radius-sheet);
+}
+
+.mark-row__dark .mark {
+  color: #ffffff;
+}
+
+.mark-row__dark .mark circle {
+  fill: var(--blueprint);
+}
+
+.sg-h1,
+.sg-h2 {
+  margin-bottom: var(--space-3);
+  color: var(--blueprint);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+}
+
+.sg-h1 {
+  font-size: var(--step-4);
+}
+
+.sg-h2 {
+  font-size: var(--step-2);
 }
