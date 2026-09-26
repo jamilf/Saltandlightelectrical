@@ -37,9 +37,10 @@ These were drafted for you. Some state things about you that came from the brief
 - [x] S5 and S7 explanations checked on 26 September 2026 against the NSW pages listed in `LAUNCH.md`. They match.
 
 ### About
-- [ ] **Check** the IT paragraph: "keeping the systems businesses rely on up and running. It taught me to write down what I did and why, and to stay calm when something breaks at the worst possible moment."
-- [ ] **Check** why you moved to the trade: "I wanted to work with my hands on things people can see and depend on, and one day to run a business of my own." This one is a guess. Replace it with your real reason.
-- [ ] Why the name, including "My faith matters to me, and it's why the business has this name. You don't need to share it to follow along. Everyone is welcome here."
+- [ ] **Check** "Why the trade". The brief didn't give your reasons for changing careers, so these were drafted for you: wanting work that lasts and that you can see, getting off the screen, the power underneath the IT systems you looked after, and wanting to run your own business one day. Replace anything that isn't your real reason.
+- [ ] **Check** the IT paragraph: "keeping the systems businesses rely on up and running. It taught me good habits. I learnt to write down what I did and why, and to stay calm when something breaks at the worst possible moment."
+- [ ] "Why the name": Matthew 5:13-16, the lamp on a stand, and "It's a standard I'm asking to be measured against."
+- [ ] **Check** "Faith and work". It's written as your own beliefs: ordinary work matters to God (Colossians 3:23), loving your neighbour, being trusted with very little (Luke 16:10), and that the "do the work once, and do it properly" promise comes from your faith. Make sure it says what you believe, in words you'd use.
 - [ ] **Check** credentials in `site.config.json`: the Certificate II's exact title and code, and that your White Card and first aid certificate are current. Set `verified` to false for anything you can't confirm.
 - [ ] **Check** before switching on `features.aboutCommunity`: the GracePoint paragraph.
 - [ ] **Check** before switching on `features.aboutCommunication`: the therapy assistant paragraph.
