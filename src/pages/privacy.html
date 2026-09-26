@@ -1,8 +1,52 @@
 ---
 title: Privacy
-description: How this site handles your email address, your messages and your visits.
+description: How this site handles your email address, your messages and your visits, in plain English.
 ---
 <div class="wrap page">
   <h1>Privacy</h1>
-  <p class="lede">[[BUILD: privacy policy, phase 3]]</p>
+  <p class="lede">This site collects as little as it can. Here's what happens to anything you send.</p>
+
+  <section class="spec" aria-labelledby="privacy-who">
+    <h2 id="privacy-who">Who runs this site</h2>
+    <div class="spec__body">
+      <p>{{ person.name }} runs this site. To ask about your information, or to have it deleted, use the <a href="/contact/">contact page</a>{{#if person.email}} or email <a href="mailto:{{ person.email }}">{{ person.email }}</a>{{/if}}.</p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="privacy-cookies">
+    <h2 id="privacy-cookies">Cookies</h2>
+    <div class="spec__body">
+      <p>This site doesn't set cookies, so there's no cookie banner. If you send a form, the service that receives it may set its own cookies on its own pages.</p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="privacy-newsletter">
+    <h2 id="privacy-newsletter">Following the build</h2>
+    <div class="spec__body">
+      <p>If you follow the build, your email address is stored by {{#if forms.newsletter.provider}}{{ forms.newsletter.provider }}{{else}}[[NEWSLETTER_PROVIDER]]{{/if}}, the service that sends the emails. I use it only to send updates about Salt and Light Electrical, a few times a year.</p>
+      <p>Every email has an unsubscribe link. You can also ask me to remove you and I will.</p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="privacy-messages">
+    <h2 id="privacy-messages">Messages</h2>
+    <div class="spec__body">
+      <p>Messages from the contact form go through {{#if forms.contact.provider}}{{ forms.contact.provider }}{{else}}[[FORM_PROVIDER]]{{/if}} to my email. I use your name and email address only to reply. I don't add them to the email list and I don't share them.</p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="privacy-visits">
+    <h2 id="privacy-visits">Visits</h2>
+    <div class="spec__body">
+      <p>The site is hosted on Cloudflare. Like any web host, it handles technical details such as your IP address so it can deliver pages and block attacks.</p>
+      {{#if analytics.cloudflareWebAnalyticsToken}}<p>I use Cloudflare Web Analytics to count visits. [[VERIFY: describe what Cloudflare Web Analytics collects, from Cloudflare's current documentation]]</p>{{else}}<p>I haven't added any analytics or tracking to this site.</p>{{/if}}
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="privacy-changes">
+    <h2 id="privacy-changes">Changes</h2>
+    <div class="spec__body">
+      <p>If this policy changes, the new version goes on this page. It was last changed on 26 September 2026.</p>
+    </div>
+  </section>
 </div>

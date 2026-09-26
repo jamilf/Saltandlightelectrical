@@ -44,6 +44,7 @@ export function makeSite() {
         config.site.url = 'https://example.com.au';
         config.site.ogImage = '/assets/img/og-test.png';
         config.site.ogImageAlt = 'Test image';
+        config.person.email = 'jamil@example.com';
       });
       site.write('src/assets/img/og-test.png', 'not really a png');
       for (const file of ['content/milestones.json', ...listPages(root)]) {
@@ -58,7 +59,7 @@ export function makeSite() {
 }
 
 function listPages(root) {
-  return ['index', 'road-to-launch', 'about', 'contact', 'privacy'].map((name) => `src/pages/${name}.html`);
+  return ['index', 'road-to-launch', 'about', 'contact', 'privacy'].map((name) => `src/pages/${name}.html`).concat('site.config.json');
 }
 
 export function rules(report, kind = 'failures') {

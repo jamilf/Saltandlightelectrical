@@ -116,6 +116,15 @@ function validateConfig(config) {
     const settings = config.forms?.[form];
     need(settings && (settings.endpoint === null || isUrl(settings.endpoint)), `forms.${form}.endpoint must be a full https address or null.`);
     need(settings && isText(settings.honeypotField), `forms.${form}.honeypotField is missing.`);
+    need(settings && typeof settings.ajax === 'boolean', `forms.${form}.ajax must be true or false.`);
+  }
+
+  need(person.photo === null || person.photo === undefined || (isText(person.photo?.src) && person.photo.src.startsWith('/') && isText(person.photo?.alt)), 'person.photo must be null or { "src": "/assets/img/...", "alt": "a description" }.');
+  need(Array.isArray(config.credentials), 'credentials must be a list (it can be empty).');
+  for (const credential of config.credentials ?? []) {
+    need(isText(credential.title) && isText(credential.when), 'Each credential needs a title and a when.');
+    need(['completed', 'in-progress'].includes(credential.status), `Credential "${credential.title}": status must be completed or in-progress.`);
+    need(typeof credential.verified === 'boolean', `Credential "${credential.title}": verified must be true or false. Only verified credentials appear on the site.`);
   }
 
   need(config.features && typeof config.features.aboutCommunity === 'boolean' && typeof config.features.aboutCommunication === 'boolean', 'features.aboutCommunity and features.aboutCommunication must be true or false.');

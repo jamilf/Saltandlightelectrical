@@ -17,8 +17,15 @@
     "statusPhrase": "looking for an electrical apprenticeship",
     "jobTitle": null,
     "email": null,
-    "linkedin": null
+    "linkedin": null,
+    "photo": null
   },
+
+  "credentials": [
+    { "title": "[[JAMIL: exact title and code of your Certificate II in Electrotechnology]]", "status": "completed", "when": "Early 2026", "verified": false },
+    { "title": "White Card (general construction induction)", "status": "completed", "when": "[[JAMIL: year]]", "verified": false },
+    { "title": "[[JAMIL: exact name of your first aid certificate]]", "status": "completed", "when": "[[JAMIL: year]]", "verified": false }
+  ],
 
   "notices": {
     "status": "Salt and Light Electrical isn't trading yet. {name} is {statusPhrase} and doesn't offer electrical services or hold an electrical contractor licence.",
@@ -47,8 +54,8 @@
   },
 
   "forms": {
-    "newsletter": { "provider": null, "endpoint": null, "emailField": "email", "honeypotField": "website" },
-    "contact": { "provider": null, "endpoint": null, "honeypotField": "website" }
+    "newsletter": { "provider": null, "endpoint": null, "emailField": "email", "honeypotField": "website", "ajax": false },
+    "contact": { "provider": null, "endpoint": null, "honeypotField": "website", "ajax": false }
   },
 
   "features": {

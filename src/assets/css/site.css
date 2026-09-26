@@ -1298,3 +1298,23 @@ img {
 .sg-h2 {
   font-size: var(--step-2);
 }
+
+/* ---------- About ---------- */
+.portrait {
+  max-width: 20rem;
+  margin: 0 0 var(--space-6);
+}
+
+.portrait img {
+  display: block;
+  border-radius: var(--radius-control);
+}
+
+.credentials {
+  max-width: var(--measure);
+  padding-left: var(--space-5);
+}
+
+.follow-linkedin {
+  margin-top: var(--space-4);
+}

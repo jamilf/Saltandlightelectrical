@@ -3,11 +3,12 @@ title: Salt and Light Electrical
 metaTitle: Salt and Light Electrical, built in public by Jamil Flores
 description: Jamil Flores is building Salt and Light Electrical in public, from apprentice to licensed contractor. It isn't trading yet and is planned to open in {{ site.launchYear }}.
 schema: website person
+forms: true
 ---
 <div class="wrap page">
   <section class="hero" aria-labelledby="hero-heading">
     <h1 id="hero-heading">Salt and Light Electrical</h1>
-    <p class="lede">[[JAMIL: your hero subline, reworked from the draft in the brief]]</p>
+    <p class="lede">I'm Jamil. I'm looking for an electrical apprenticeship in Western Sydney, and this is where I'm building Salt and Light Electrical in public, from apprentice to licensed contractor.</p>
     <p class="hero__target">Planned to open in {{ site.launchYear }}, once licensed.</p>
     <p class="button-row">
       <a class="button button--primary" href="#follow-the-build">Follow the build</a>
@@ -24,10 +25,47 @@ schema: website person
     </div>
   </section>
 
+  <section class="spec" aria-labelledby="name-heading">
+    <h2 id="name-heading">Why the name</h2>
+    <div class="spec__body">
+      <p>The name comes from Matthew 5:13-16. Salt keeps things from going bad, and light shows things as they really are. For an electrician, that means work that lasts and honesty about what's behind the wall.</p>
+      <p><a href="/about/#why-the-name">More about the name</a></p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="building-heading">
+    <h2 id="building-heading">What I'm building</h2>
+    <div class="spec__body">
+      <p>Salt and Light Electrical is planned to open in {{ site.launchYear }}, once I hold an electrical contractor licence. It will focus on commercial and technical electrical work.</p>
+      <p>Two promises sit under it. Work that's done once and done properly. And clear records of what was done and why, so whoever works on it next isn't left guessing.</p>
+      <p>Until then I'm not offering electrical work of any kind. This site is the record of getting there.</p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="journal-heading">
+    <h2 id="journal-heading">Latest journal entries</h2>
+    <div class="spec__body">
+      {{#if journal.latest}}
+      <ol class="post-list">
+        {{#each journal.latest}}
+        <li class="post-list__item">
+          <p class="post-list__date"><time datetime="{{ date }}">{{ dateLabel }}</time></p>
+          <h3 class="post-list__title"><a href="{{ url }}">{{ title }}</a></h3>
+          <p class="post-list__summary">{{ summary }}</p>
+        </li>
+        {{/each}}
+      </ol>
+      <p><a href="/journal/">All journal entries</a></p>
+      {{else}}
+      <p>No entries yet. The first one will explain why I'm building a business six years before it opens.</p>
+      {{/if}}
+    </div>
+  </section>
+
   <section class="spec" id="follow-the-build" aria-labelledby="follow-heading">
     <h2 id="follow-heading">Follow the build</h2>
     <div class="spec__body">
-      <p>[[BUILD: newsletter form, phase 3]]</p>
+      {{> follow-form }}
     </div>
   </section>
 </div>

@@ -1,6 +1,6 @@
 // Builds the site into dist/. Same inputs always give the same files, byte for byte.
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { loadConfig, statusNoticeText } from './config.mjs';
 import { headersFile, llmsTxt, robotsTxt, rssXml, sitemapXml } from './feeds.mjs';
 import { parseFrontMatter } from './frontmatter.mjs';
@@ -52,6 +52,10 @@ export function build(options = {}) {
       categories: config.journal.categories.map((category) => ({ ...category, url: `/journal/${category.slug}/` })),
     },
     forms: config.forms,
+    credentials: {
+      shown: config.credentials.filter((credential) => credential.verified).map((credential) => ({ ...credential, inProgress: credential.status === 'in-progress' })),
+      waiting: config.credentials.filter((credential) => !credential.verified).length,
+    },
     features: config.features,
     analytics: config.analytics,
     followPath: config.followPath,
@@ -235,7 +239,7 @@ function loadFolder(dir) {
 }
 
 function copyDir(from, to) {
-  if (existsSync(from)) cpSync(from, to, { recursive: true });
+  if (existsSync(from)) cpSync(from, to, { recursive: true, filter: (source) => !basename(source).startsWith('.') });
 }
 
 function writeFile(path, content) {
