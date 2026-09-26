@@ -138,7 +138,7 @@ function item({ classes, symbol, ref, title, when = null, state, wireIn = null, 
   const narrowOnly = classes.includes('sld__stage--summary') || classes.includes('sld__stage--gap');
   return [
     `<li class="sld__stage ${classes.join(' ')}"${narrowOnly ? ' hidden' : ''}>`,
-    `<div class="sld__line" aria-hidden="true">${wire('in', wireIn)}${symbolSvg(symbol)}${hasOut ? wire('out', wireOut) : ''}</div>`,
+    `<div class="sld__line" aria-hidden="true">${wire('in', wireIn)}${symbolSvg(symbol, 48, timingClasses(wireIn))}${hasOut ? wire('out', wireOut) : ''}</div>`,
     '<div class="sld__label">',
     `<p class="sld__ref">${e(ref)}</p>`,
     `<p class="sld__title">${e(title)}</p>`,
@@ -149,14 +149,20 @@ function item({ classes, symbol, ref, title, when = null, state, wireIn = null, 
   ].filter(Boolean).join('\n');
 }
 
-// Timing is written as classes (dl-3 means a 300ms delay) because the content security policy
-// blocks inline styles. site.css defines dl-0 to dl-20 and du-1 to du-5.
 function wire(side, timing) {
   if (!timing) return `<span class="sld__wire sld__wire--${side}"></span>`;
+  return `<span class="sld__wire sld__wire--${side}"><span class="sld__live ${timingClasses(timing)}"></span></span>`;
+}
+
+// Timing is written as classes (dl-3 means a 300ms delay) because the content security policy
+// blocks inline styles. site.css defines dl-0 to dl-20 and du-1 to du-5. A symbol gets the same
+// classes as the wire leading into it, so its contact closes as the power arrives.
+function timingClasses(timing) {
+  if (!timing) return '';
   const classes = [];
   if (timing.desktop) classes.push(`dl-${timing.desktop.delay}`, `du-${timing.desktop.duration}`);
   if (timing.mobile) classes.push(`mdl-${timing.mobile.delay}`, `mdu-${timing.mobile.duration}`);
-  return `<span class="sld__wire sld__wire--${side}"><span class="sld__live ${classes.join(' ')}"></span></span>`;
+  return classes.join(' ');
 }
 
 /** Length of each half-stage in tenths of a second, so the whole path takes about one second. */

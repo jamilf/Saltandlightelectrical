@@ -45,6 +45,19 @@ test('only wires up to the current stage are energised, and their timing stays w
   }
 });
 
+test('each energised contact closes as its wire arrives, and planned contacts stay still', () => {
+  const site = fresh();
+  site.build();
+  const [panel] = panels(readFileSync(join(site.dist, 'road-to-launch/index.html'), 'utf8'));
+  for (const li of stagesOf(panel)) {
+    const symbol = findAll(li, (n) => hasClass(n, 'sld__symbol'))[0];
+    const wireIn = findAll(li, (n) => hasClass(n, 'sld__wire--in'))[0];
+    const live = findAll(wireIn, (n) => hasClass(n, 'sld__live'))[0];
+    const timing = (node) => (node?.attrs.class ?? '').split(' ').filter((c) => /^m?d[lu]-\d+$/.test(c)).join(' ');
+    assert.equal(timing(symbol), timing(live), textOf(li));
+  }
+});
+
 test('the compact diagram collapses done stages and the far future on narrow screens', () => {
   const site = fresh();
   site.build();

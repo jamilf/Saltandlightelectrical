@@ -1,8 +1,14 @@
-// Salt and Light Electrical: form helpers. The forms work without this script; it adds
-// clear error messages, quietly drops bot submissions caught by the honeypot, and can
-// send a form without leaving the page when data-ajax="true".
+// Salt and Light Electrical: form helpers, plus smooth in-page scrolling. The forms work without
+// this script; it adds clear error messages, quietly drops bot submissions caught by the honeypot,
+// and can send a form without leaving the page when data-ajax="true".
 (function () {
   'use strict';
+
+  // Links to another part of the page glide there once it has loaded (site.css skips this under
+  // reduced motion). Adding it late means arriving at an anchor from another page doesn't glide.
+  window.addEventListener('load', function () {
+    document.documentElement.classList.add('can-glide');
+  });
 
   function fieldError(input) {
     var value = input.value.trim();

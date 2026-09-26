@@ -972,7 +972,7 @@ img {
 
 }
 
-/* The one moment of motion: the energised path draws from the start to the current stage.
+/* The diagram's motion: the energised path draws from the start to the current stage.
    Timing classes come from the build: dl-3 is a 300ms delay, du-2 a 200ms duration,
    and the m versions apply to the collapsed diagram on narrow screens. */
 @keyframes energise-down {
@@ -1031,6 +1031,81 @@ img {
 .mdl-3 { --mdl: 300ms; }
 .mdl-6 { --mdl: 600ms; }
 .mdu-3 { --mdu: 300ms; }
+
+/* Each contact closes as the power reaches it. A symbol carries the same timing classes as the
+   wire leading into it. Done contacts swing shut and turn white. The current one swings part
+   way, turns amber, then glows twice so it's easy to find. In live mode the lamp lights. */
+.sld__symbol--closed line,
+.sld__symbol--closing line {
+  transform-box: view-box;
+  transform-origin: 8.5px 24px;
+}
+
+@keyframes contact-close {
+  from {
+    transform: rotate(-29deg);
+  }
+}
+
+@keyframes contact-closing {
+  from {
+    transform: rotate(-14deg);
+  }
+}
+
+@keyframes contact-energise {
+  from {
+    color: var(--dead);
+  }
+}
+
+@keyframes contact-glow {
+  50% {
+    filter: drop-shadow(0 0 6px rgba(245, 179, 1, 0.85));
+  }
+}
+
+@keyframes lamp-on {
+  from {
+    fill: var(--blueprint);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sld__stage .sld__symbol {
+    --at: var(--mdl, var(--dl, 0ms));
+    --for: var(--mdu, var(--du, 300ms));
+  }
+
+  .sld__stage.is-done .sld__symbol {
+    animation: contact-energise var(--for) ease-in var(--at) both;
+  }
+
+  .sld__stage.is-done .sld__symbol line {
+    animation: contact-close var(--for) ease-in var(--at) both;
+  }
+
+  .sld__stage.is-current .sld__symbol {
+    animation:
+      contact-energise var(--for) ease-in var(--at) both,
+      contact-glow 1.2s ease-in-out calc(var(--at) + var(--for)) 2;
+  }
+
+  .sld__stage.is-current .sld__symbol line {
+    animation: contact-closing var(--for) ease-out var(--at) both;
+  }
+
+  .sld__stage.is-lit .sld__symbol circle {
+    animation: lamp-on 600ms ease-out calc(var(--at) + var(--for)) both;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 75em) {
+  .sld__stage .sld__symbol {
+    --at: var(--dl, 0ms);
+    --for: var(--du, 300ms);
+  }
+}
 
 /* ---------- Road to launch page: stage notes and revision history ---------- */
 .stage-notes {
@@ -1336,4 +1411,71 @@ img {
 
 .follow-linkedin {
   margin-top: var(--space-4);
+}
+
+/* ---------- Motion ----------
+   Small and purposeful, and all of it switched off when someone asks for reduced motion.
+   Pages fade into each other, in-page links scroll rather than jump, controls ease between
+   states, and form messages settle into place so they're noticed. The road to launch has its
+   own motion, next to the diagram styles. */
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes message-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root) {
+    animation: page-out 150ms ease-in both;
+  }
+
+  ::view-transition-new(root) {
+    animation: page-in 250ms ease-out both;
+  }
+
+  /* site.js adds can-glide once the page has loaded, so "Follow the build" glides down the home
+     page, while a page opened at an anchor from elsewhere still lands there straight away. */
+  html.can-glide {
+    scroll-behavior: smooth;
+  }
+
+  .button {
+    transition:
+      background-color 150ms ease,
+      border-color 150ms ease,
+      transform 100ms ease;
+  }
+
+  .input,
+  .select,
+  .textarea {
+    transition: border-color 150ms ease;
+  }
+
+  .site-nav a,
+  .category-nav a {
+    transition: color 150ms ease;
+  }
+
+  .field__error:not([hidden]),
+  .form-message {
+    animation: message-in 200ms ease-out;
+  }
 }
