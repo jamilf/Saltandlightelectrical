@@ -1114,7 +1114,7 @@ img {
   list-style: none;
 }
 
-.stage-notes li {
+.stage-notes > li {
   padding-block: var(--space-4);
   border-top: 1px solid var(--rule);
 }
@@ -1131,6 +1131,20 @@ img {
 
 .stage-notes p:last-child {
   margin-bottom: 0;
+}
+
+.stage-notes__journal {
+  font-size: var(--text-small);
+}
+
+.stage-notes__journal p {
+  margin-bottom: var(--space-1);
+  color: var(--ink-soft);
+}
+
+.stage-notes__journal ul {
+  margin: 0 0 var(--space-1);
+  padding-left: var(--space-5);
 }
 
 .table-wrap {

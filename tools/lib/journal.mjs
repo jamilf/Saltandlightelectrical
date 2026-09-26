@@ -87,6 +87,7 @@ export function loadPosts({ root, config, milestones }) {
 
   const seen = new Map();
   for (const post of posts) {
+    if (categories.has(post.slug)) problems.push(`${post.file}: its address /journal/${post.slug}/ is taken by the ${categories.get(post.slug).name} category page. Add a different "slug:" to it.`);
     if (seen.has(post.slug)) problems.push(`Two posts share the address /journal/${post.slug}/ (${seen.get(post.slug)} and ${post.file}). Add a different "slug:" to one.`);
     seen.set(post.slug, post.file);
   }

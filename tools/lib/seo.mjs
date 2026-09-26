@@ -3,7 +3,11 @@
 
 export function pageTitle(page, config) {
   if (page.metaTitle) return page.metaTitle;
-  return page.title === config.site.name ? config.site.name : `${page.title} | ${config.site.name}`;
+  if (page.title === config.site.name) return config.site.name;
+  // Search results cut titles off around 60 characters. When the site name would push a title
+  // past that, the title goes on its own, since it's the part that says what the page is.
+  const full = `${page.title} | ${config.site.name}`;
+  return full.length > 60 ? page.title : full;
 }
 
 export function robotsFor(page, config) {

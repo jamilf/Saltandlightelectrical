@@ -111,7 +111,7 @@ test('drafts never build, and posts get their metadata', () => {
   assert.equal(existsSync(join(site.dist, 'journal/template')), false);
 
   const first = readFileSync(join(site.dist, 'journal/first-week/index.html'), 'utf8');
-  assert.match(first, /<dt>Written during<\/dt><dd>Looking for an electrical apprenticeship<\/dd>/);
+  assert.match(first, /<dt>Written during<\/dt><dd><a href="\/road-to-launch\/#stage-finding-apprenticeship">Looking for an electrical apprenticeship<\/a><\/dd>/);
   assert.match(first, /<dt>Reading time<\/dt><dd>1 minute<\/dd>/);
   assert.match(first, /Next entry: <a href="\/journal\/how-rcds-work\/">How safety switches work<\/a>/);
   assert.doesNotMatch(first, /data-allow-id="safety-note"/);
@@ -148,5 +148,5 @@ test('revision letter and last updated date come from the newest revision', () =
     text.replace('"revisions": [', '"revisions": [\n    { "rev": "B", "date": "2026-12-01", "note": "Second issue." },'),
   );
   site.build();
-  assert.match(readFileSync(join(site.dist, 'index.html'), 'utf8'), /Revision B, updated 1 December 2026\./);
+  assert.match(readFileSync(join(site.dist, 'index.html'), 'utf8'), /<a href="\/road-to-launch\/#revision-history">Revision B<\/a>, updated 1 December 2026\./);
 });

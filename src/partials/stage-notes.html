@@ -1,8 +1,16 @@
 <ol class="stage-notes">
-  {{#each milestones.stages}}<li>
+  {{#each milestones.stages}}<li id="stage-{{ id }}">
     <h3>{{ ref }}. {{ title }}</h3>
     <p class="stage-notes__meta">{{ when }}. {{#if isDone}}Done{{/if}}{{#if isCurrent}}Now{{/if}}{{#if isPlanned}}Planned{{/if}}.</p>
     {{#if explain}}<p>{{ explain }}</p>{{/if}}
+    {{#if entries}}<div class="stage-notes__journal">
+      <p>Written during this stage:</p>
+      <ul>
+        {{#each entries}}<li><a href="{{ url }}">{{ title }}</a></li>
+        {{/each}}
+      </ul>
+      {{#if entriesMore}}<p>And {{ entriesMore }} more in the <a href="/journal/">journal</a>.</p>{{/if}}
+    </div>{{/if}}
   </li>
   {{/each}}
 </ol>

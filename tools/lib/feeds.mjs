@@ -59,7 +59,7 @@ export function rssXml(posts, config, lastDate) {
   ].join('\n');
 }
 
-export function llmsTxt(config, milestones) {
+export function llmsTxt(config, milestones, posts = []) {
   const url = (path) => `${config.origin}${path}`;
   const current = milestones.current ? `Current stage: ${milestones.current.title}.` : '';
   return [
@@ -78,6 +78,7 @@ export function llmsTxt(config, milestones) {
     `- [Contact](${url('/contact/')}): how to get in touch`,
     `- [RSS feed](${url('/rss.xml')}): journal entries as a feed`,
     '',
+    ...(posts.length ? ['## Journal', '', ...posts.map((post) => `- [${post.title}](${url(post.url)}), ${post.date}: ${post.summary}`), ''] : []),
   ].join('\n');
 }
 

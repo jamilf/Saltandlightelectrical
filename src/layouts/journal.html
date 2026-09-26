@@ -19,6 +19,6 @@
     {{/each}}
   </ol>
   {{else}}
-  <p class="empty">No entries here yet.</p>
+  <p class="empty">No entries here yet.{{#unless listing.isIndex}} Until there are, <a href="/journal/">read all entries</a>, or get new ones through the <a href="/rss.xml">RSS feed</a>.{{/unless}}</p>
   {{/if}}
 </div>
