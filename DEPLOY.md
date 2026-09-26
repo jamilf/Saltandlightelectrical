@@ -26,11 +26,13 @@ Sign up at https://dash.cloudflare.com/sign-up. The free plan is enough.
    |---|---|
    | Project name | `salt-and-light-electrical` (it must match `name` in `wrangler.jsonc`) |
    | Production branch | `main` |
-   | Build command | `node tools/build.mjs && node tools/check.mjs` |
+   | Build command | leave empty (see below) |
    | Deploy command | `npx wrangler deploy` |
    | Root directory | leave empty |
 
-4. Select **Deploy**. The first build takes a minute or two. In the build log you should see `Check passed`, then the deploy.
+   The build command can stay empty because `wrangler.jsonc` tells wrangler to build and check the site itself before every deploy. If you'd rather see it in the dashboard too, `node tools/build.mjs && node tools/check.mjs` works there as well; the site then builds twice, which does no harm.
+
+4. Select **Deploy**. The first build takes a minute or two. In the build log you should see `[custom build] Check passed`, then the upload.
 
 When it finishes, Cloudflare shows the address, something like `https://salt-and-light-electrical.<your-name>.workers.dev`. That address is public: anyone you send it to can open it.
 
@@ -86,7 +88,9 @@ Until an endpoint is set, the site shows your email address if `person.email` is
 
 ## When a build fails
 
-Open the project in **Workers & Pages** and look at the latest build's log. The check prints each failure with the rule it broke, the page and what to change. Fix it, commit, and Cloudflare tries again. Running `node tools/build.mjs && node tools/check.mjs` on your computer shows the same thing before you push.
+Open the project in **Workers & Pages** and look at the latest build's log. The check prints each failure (lines starting `[custom build]`) with the rule it broke, the page and what to change. Fix it, commit, and Cloudflare tries again. Running `node tools/build.mjs && node tools/check.mjs` on your computer shows the same thing before you push.
+
+**"The directory specified by the assets.directory field does not exist"** means `dist/` was never built. Check that `wrangler.jsonc` still has its `build` section, and that the deploy command is `npx wrangler deploy` run from the top of the repository (root directory empty).
 
 ## Cloudflare guides
 

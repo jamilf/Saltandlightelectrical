@@ -17,7 +17,7 @@ Run these from the project folder.
 | `node tools/new-post.mjs "Title"` | Starts a journal post, marked as a draft |
 | `node tools/build.mjs --mode prelaunch` | Builds in another mode without changing the config, for testing |
 
-Before pushing a change, run `node tools/build.mjs && node tools/check.mjs && node --test`. Cloudflare runs the first two on every push, and a failed check means nothing deploys.
+Before pushing a change, run `node tools/build.mjs && node tools/check.mjs && node --test`. Cloudflare runs the first two on every push (the `build` section of `wrangler.jsonc` makes wrangler run them before it deploys), and a failed check means nothing deploys.
 
 ## Adding a journal post
 

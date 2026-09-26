@@ -1,11 +1,15 @@
 // Cloudflare Workers configuration. This is an assets-only Worker: no server code,
 // Cloudflare serves the files the build writes to dist/.
-// The Cloudflare build runs:  node tools/build.mjs && node tools/check.mjs
-// then deploys with:          npx wrangler deploy
-// If the check fails, the build fails and nothing is deployed.
+//
+// "npx wrangler deploy" runs the build command below first, so the site is built and
+// checked on every deploy even if the build command in the Cloudflare dashboard is empty.
+// If the check fails, wrangler stops and nothing is deployed.
 {
   "name": "salt-and-light-electrical",
   "compatibility_date": "2026-09-01",
+  "build": {
+    "command": "node tools/build.mjs && node tools/check.mjs"
+  },
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page",
