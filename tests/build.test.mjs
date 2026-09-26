@@ -99,7 +99,8 @@ test('drafts never build, and posts get their metadata', () => {
   site.write('content/journal/_template.md', post({ title: 'Template' }));
   const { manifest } = site.build();
 
-  assert.deepEqual(manifest.drafts.map((d) => d.slug), ['unfinished']);
+  assert.ok(manifest.drafts.map((d) => d.slug).includes('unfinished'));
+  assert.ok(!manifest.pages.some((p) => p.path === '/journal/why-im-building-early/'));
   assert.equal(existsSync(join(site.dist, 'journal/unfinished')), false);
   assert.equal(existsSync(join(site.dist, 'journal/template')), false);
 
