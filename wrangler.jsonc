@@ -5,8 +5,12 @@
 // checked on every deploy even if the build command in the Cloudflare dashboard is empty.
 // If the check fails, wrangler stops and nothing is deployed.
 {
-  "name": "salt-and-light-electrical",
+  // Must match the Worker's name in the Cloudflare dashboard, or Cloudflare's builds fail.
+  "name": "saltandlightelectrical",
   "compatibility_date": "2026-09-01",
+  // The site lives at saltandlightelectrical.com. Without this line, every deploy would
+  // switch the workers.dev address back on.
+  "workers_dev": false,
   "build": {
     "command": "node tools/build.mjs && node tools/check.mjs"
   },

@@ -24,7 +24,7 @@ Sign up at https://dash.cloudflare.com/sign-up. The free plan is enough.
 
    | Setting | Value |
    |---|---|
-   | Project name | `salt-and-light-electrical` (it must match `name` in `wrangler.jsonc`) |
+   | Project name | `saltandlightelectrical` (it must match `name` in `wrangler.jsonc`) |
    | Production branch | `main` |
    | Build command | leave empty (see below) |
    | Deploy command | `npx wrangler deploy` |
@@ -34,7 +34,7 @@ Sign up at https://dash.cloudflare.com/sign-up. The free plan is enough.
 
 4. Select **Deploy**. The first build takes a minute or two. In the build log you should see `[custom build] Check passed`, then the upload.
 
-When it finishes, Cloudflare shows the address, something like `https://salt-and-light-electrical.<your-name>.workers.dev`. That address is public: anyone you send it to can open it.
+When it finishes, Cloudflare shows the address, something like `https://saltandlightelectrical.<your-name>.workers.dev`. That address is public: anyone you send it to can open it.
 
 The project uses Node 22, set by the `.node-version` file. If a build ever complains about the Node version, add a build variable `NODE_VERSION` with the value `22` under the project's **Settings > Build**.
 
@@ -43,7 +43,7 @@ The project uses Node 22, set by the `.node-version` file. If a build ever compl
 The site needs its own address for links in search results, the RSS feed and link previews.
 
 1. On GitHub, open `site.config.json` and select the pencil to edit it.
-2. Change `"url": null` to your address in quotes, for example `"url": "https://salt-and-light-electrical.your-name.workers.dev"`.
+2. Change `"url": null` to your address in quotes, for example `"url": "https://saltandlightelectrical.your-name.workers.dev"`.
 3. Commit. Cloudflare rebuilds on its own.
 
 ## 5. Quiet or public: choose the mode
@@ -66,7 +66,7 @@ If you plan to use your own domain, set it up (step 6) before prelaunch, so sear
 2. If you bought it elsewhere, add it to Cloudflare (**Add a domain**) and change its nameservers at your registrar to the two Cloudflare gives you.
 3. Open your Worker, then **Settings > Domains & Routes > Add > Custom domain**, and enter the domain.
 4. Update `site.url` in `site.config.json` to the new address and commit.
-5. Once the domain works, turn off the `workers.dev` address in **Settings > Domains & Routes**, so the site has one address.
+5. Once the domain works, turn off the `workers.dev` address in **Settings > Domains & Routes**, so the site has one address. `wrangler.jsonc` has `"workers_dev": false`, which keeps it off; without that line, every deploy switches it back on.
 
 ## 7. The forms
 
