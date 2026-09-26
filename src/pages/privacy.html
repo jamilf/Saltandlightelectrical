@@ -23,7 +23,7 @@ description: How this site handles your email address, your messages and your vi
   <section class="spec" aria-labelledby="privacy-newsletter">
     <h2 id="privacy-newsletter">Following the build</h2>
     <div class="spec__body">
-      <p>If you follow the build, your email address is stored by {{#if forms.newsletter.provider}}{{ forms.newsletter.provider }}{{else}}[[NEWSLETTER_PROVIDER]]{{/if}}, the service that sends the emails. I use it only to send updates about Salt and Light Electrical, a few times a year.</p>
+      <p>If you follow the build, your email address is stored by {{#if forms.newsletter.provider}}{{ forms.newsletter.provider }}, the service that sends the emails{{else}}the service that sends the emails, which will be named here once the list opens{{/if}}. I use it only to send updates about Salt and Light Electrical, a few times a year.</p>
       <p>Every email has an unsubscribe link. You can also ask me to remove you and I will.</p>
     </div>
   </section>
@@ -31,7 +31,7 @@ description: How this site handles your email address, your messages and your vi
   <section class="spec" aria-labelledby="privacy-messages">
     <h2 id="privacy-messages">Messages</h2>
     <div class="spec__body">
-      <p>Messages from the contact form go through {{#if forms.contact.provider}}{{ forms.contact.provider }}{{else}}[[FORM_PROVIDER]]{{/if}} to my email. I use your name and email address only to reply. I don't add them to the email list and I don't share them.</p>
+      <p>Messages from the contact form go through {{#if forms.contact.provider}}{{ forms.contact.provider }}{{else}}a form service, which will be named here once the form opens,{{/if}} to my email. I use your name and email address only to reply. I don't add them to the email list and I don't share them.</p>
     </div>
   </section>
 

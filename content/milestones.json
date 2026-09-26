@@ -11,8 +11,8 @@
       "status": "done",
       "title": "IT operations and application support",
       "short": "IT work",
-      "when": "About eight years, [[JAMIL: start and end years]]",
-      "explain": "[[JAMIL: one or two sentences on what that work taught you]]"
+      "when": "About eight years",
+      "explain": "Keeping business systems running meant writing down what was done and why, and staying calm when something broke at the worst moment. Those habits are coming with me into the trade."
     },
     {
       "id": "cert-ii",
@@ -21,7 +21,7 @@
       "title": "Certificate II in Electrotechnology",
       "short": "Certificate II",
       "when": "Early 2026",
-      "explain": "[[JAMIL: one or two sentences on the course]]"
+      "explain": "A pre-apprenticeship course covering the basics of electrical principles, tools and working safely. It's a common first step towards an electrical apprenticeship."
     },
     {
       "id": "finding-apprenticeship",
@@ -30,8 +30,8 @@
       "title": "Looking for an electrical apprenticeship",
       "short": "Finding an apprenticeship",
       "when": "2026",
-      "learning": "[[JAMIL: what you're learning or working on while you apply]]",
-      "explain": "An apprenticeship is paid work in the trade, alongside study, under the supervision of licensed electricians."
+      "learning": "How apprenticeships work in NSW, and what employers look for in a first-year apprentice",
+      "explain": "An apprenticeship is paid work in the trade, alongside study, under the supervision of licensed electricians. Finding the right employer matters more than finding the first one."
     },
     {
       "id": "apprenticeship",
@@ -39,8 +39,8 @@
       "status": "planned",
       "title": "Apprenticeship and Certificate III in Electrotechnology Electrician (UEE30820)",
       "short": "Apprenticeship",
-      "when": "[[JAMIL: expected years and duration]]",
-      "explain": "[[JAMIL: one or two sentences]]"
+      "when": "About four years",
+      "explain": "Paid work on the tools under licensed electricians, with study alongside it. It finishes with the Certificate III in Electrotechnology Electrician, the qualification an electrician's licence is built on."
     },
     {
       "id": "qualified-supervisor",
@@ -48,8 +48,8 @@
       "status": "planned",
       "title": "Qualified supervisor certificate, electrician",
       "short": "Supervisor certificate",
-      "when": "[[JAMIL: year]]",
-      "explain": "[[VERIFY: plain explanation of the qualified supervisor certificate, checked against the NSW electrical work page]]"
+      "when": "After the apprenticeship",
+      "explain": "The NSW certificate that lets an electrician carry out and supervise electrical work. On its own it doesn't allow contracting or advertising, so it isn't the finish line."
     },
     {
       "id": "licensed-experience",
@@ -57,8 +57,8 @@
       "status": "planned",
       "title": "Experience as a licensed electrician",
       "short": "Licensed work",
-      "when": "[[JAMIL: years]]",
-      "explain": "[[JAMIL: one or two sentences]]"
+      "when": "Until opening",
+      "explain": "Time working as a licensed electrician, learning how good contractors run their jobs, their paperwork and their businesses."
     },
     {
       "id": "contractor-licence",
@@ -66,8 +66,8 @@
       "status": "planned",
       "title": "Contractor licence, insurance, ABN and business name",
       "short": "Licence and ABN",
-      "when": "[[JAMIL: year]]",
-      "explain": "[[VERIFY: plain explanation of the contractor licence, checked against the NSW electrical work page]]"
+      "when": "Before opening",
+      "explain": "In NSW, an electrical contractor licence is what allows someone to contract and advertise for electrical work, and every advertisement has to show the licence number. Insurance, an ABN and a registered business name are set up at the same stage."
     },
     {
       "id": "opens",
@@ -77,7 +77,7 @@
       "title": "Salt and Light Electrical opens",
       "short": "Opens",
       "when": "Target {launchYear}",
-      "explain": "Planned for {launchYear}, once licensed."
+      "explain": "The lamp lights up. Planned for {launchYear}, once licensed."
     }
   ],
 

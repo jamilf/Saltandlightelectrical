@@ -15,7 +15,7 @@
 {{else}}
 <div class="form-panel">
   <p>A short email when something on the road to launch changes. That's a few a year.</p>
-  {{#if person.email}}<p>The email list isn't set up yet. Until it is, <a href="mailto:{{ person.email }}?subject=Follow%20the%20build">email me to follow the build</a> and I'll add you when it's ready.</p>{{else}}<p>[[BUILD: set forms.newsletter.endpoint or person.email in site.config.json]]</p>{{/if}}
+  {{#if person.email}}<p>The email list isn't set up yet. Until it is, <a href="mailto:{{ person.email }}?subject=Follow%20the%20build">email me to follow the build</a> and I'll add you when it's ready.</p>{{else}}<p>The email list opens soon. Until then, you can follow the journal through its <a href="/rss.xml">RSS feed</a>.</p>{{/if}}
 </div>
 {{/if}}
 {{#if person.linkedin}}<p class="follow-linkedin"><a href="{{ person.linkedin }}">Follow along on LinkedIn</a></p>{{/if}}

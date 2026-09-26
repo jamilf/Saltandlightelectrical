@@ -1160,6 +1160,11 @@ img {
   margin-top: var(--space-6);
 }
 
+.post__body h2,
+.post__body h3 {
+  margin-top: var(--space-6);
+}
+
 .post__body blockquote {
   margin-left: 0;
   padding-left: var(--space-5);

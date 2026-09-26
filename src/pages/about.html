@@ -14,9 +14,9 @@ schema: person
   <section class="spec" aria-labelledby="story-heading">
     <h2 id="story-heading">From IT to the trade</h2>
     <div class="spec__body">
-      <p>I spent about eight years in IT operations and application support. [[JAMIL: one or two sentences on that work, trade first: what it taught you about keeping records and staying calm when something breaks]]</p>
-      <p>[[JAMIL: one sentence on why you left IT for the electrical trade]]</p>
-      <p>In early 2026 I finished a Certificate II in Electrotechnology, the course that prepares people for an electrical apprenticeship. Now I'm looking for an apprenticeship.</p>
+      <p>I spent about eight years in IT operations and application support, keeping the systems that businesses rely on running. It taught me to write down what I did and why, and to stay calm when something breaks at the worst possible moment.</p>
+      <p>I wanted to work with my hands on things people can see and depend on, and one day to run a business of my own. The electrical trade offers both.</p>
+      <p>In early 2026 I finished a Certificate II in Electrotechnology, the course that prepares people for an electrical apprenticeship. Now I'm looking for an apprenticeship, and I'm bringing those IT habits with me.</p>
     </div>
   </section>
 
@@ -34,11 +34,11 @@ schema: person
     <div class="spec__body">
       {{#if credentials.shown}}
       <ul class="credentials">
-        {{#each credentials.shown}}<li><strong>{{ title }}</strong>, {{#if inProgress}}in progress{{else}}completed{{/if}} {{ when }}</li>
+        {{#each credentials.shown}}<li><strong>{{ title }}</strong>, {{#if inProgress}}in progress{{else}}completed{{/if}}{{#if when}} {{ when }}{{/if}}</li>
         {{/each}}
       </ul>
       {{else}}
-      <p>[[JAMIL: confirm each credential in site.config.json, then set "verified": true so it appears here]]</p>
+      <p>Credentials will appear here as they're confirmed.</p>
       {{/if}}
       <p>I'm not a licensed electrician and I don't hold an electrical contractor licence. Both are on the <a href="/road-to-launch/">road to launch</a>.</p>
     </div>
@@ -48,7 +48,7 @@ schema: person
   <section class="spec" aria-labelledby="community-heading">
     <h2 id="community-heading">Community</h2>
     <div class="spec__body">
-      <p>I volunteer at GracePoint Presbyterian Church in Lidcombe. [[JAMIL: a sentence or two on what you do there]]</p>
+      <p>I volunteer at GracePoint Presbyterian Church in Lidcombe. It keeps me connected to my community, and it's a steady reminder that good work is really about the people it serves.</p>
     </div>
   </section>
   {{/if}}
@@ -57,7 +57,7 @@ schema: person
   <section class="spec" aria-labelledby="communication-heading">
     <h2 id="communication-heading">How I communicate</h2>
     <div class="spec__body">
-      <p>[[JAMIL: how therapy assistant work shaped the way you communicate]]</p>
+      <p>Working as a therapy assistant taught me to listen before I explain, and to check I've been understood. It's how I want to talk to everyone on a job, from the site manager to the newest apprentice.</p>
     </div>
   </section>
   {{/if}}

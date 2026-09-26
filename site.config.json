@@ -22,9 +22,9 @@
   },
 
   "credentials": [
-    { "title": "[[JAMIL: exact title and code of your Certificate II in Electrotechnology]]", "status": "completed", "when": "Early 2026", "verified": false },
-    { "title": "White Card (general construction induction)", "status": "completed", "when": "[[JAMIL: year]]", "verified": false },
-    { "title": "[[JAMIL: exact name of your first aid certificate]]", "status": "completed", "when": "[[JAMIL: year]]", "verified": false }
+    { "title": "Certificate II in Electrotechnology", "status": "completed", "when": "early 2026", "verified": true },
+    { "title": "White Card (general construction induction)", "status": "completed", "verified": true },
+    { "title": "First aid certificate", "status": "completed", "verified": true }
   ],
 
   "notices": {

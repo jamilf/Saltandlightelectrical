@@ -178,6 +178,7 @@ test('live mode without licence details fails rule 9 in the check too', () => {
   const site = fresh();
   site.config((config) => {
     config.site.url = 'https://example.com.au';
+    config.person.email = 'jamil@example.com';
   });
   const { manifest } = site.build('prelaunch');
   const report = runCheck({ root: site.root, manifest: { ...manifest, mode: 'live' } });
@@ -204,9 +205,11 @@ test('vague link text, missing alt text and skipped heading levels fail', () => 
 
 test('placeholders are warnings in quiet mode and failures in prelaunch', () => {
   const site = fresh();
+  site.edit('src/pages/about.html', (html) => html.replace('</h1>', '</h1>\n  <p>[[JAMIL: a sentence still to write]]</p>'));
   assert.ok(rules(site.check('quiet'), 'warnings').includes('placeholders'));
   site.config((config) => {
     config.site.url = 'https://example.com.au';
+    config.person.email = 'jamil@example.com';
   });
   assert.ok(rules(site.check('prelaunch')).includes('placeholders'));
 });

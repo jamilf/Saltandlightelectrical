@@ -11,6 +11,7 @@ after(() => site.cleanup());
 test('JavaScript stays under 10 KB and the home page under 300 KB on first load', () => {
   site.config((config) => {
     config.forms.newsletter.endpoint = 'https://forms.example.com/newsletter';
+    config.forms.newsletter.provider = 'Example Mail';
   });
   site.build();
   const size = (path) => statSync(join(site.dist, path.split('?')[0].replace(/^\//, ''))).size;

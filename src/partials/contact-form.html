@@ -36,6 +36,6 @@
 </form>
 {{else}}
 <div class="form-panel">
-  {{#if person.email}}<p>The contact form isn't set up yet. Until it is, you can <a href="mailto:{{ person.email }}">email me at {{ person.email }}</a>.</p>{{else}}<p>[[BUILD: set forms.contact.endpoint or person.email in site.config.json]]</p>{{/if}}
+  {{#if person.email}}<p>The contact form isn't set up yet. Until it is, you can <a href="mailto:{{ person.email }}">email me at {{ person.email }}</a>.</p>{{else}}<p>The contact form opens soon.{{#if person.linkedin}} Until then, you can <a href="{{ person.linkedin }}">message me on LinkedIn</a>.{{/if}}</p>{{/if}}
 </div>
 {{/if}}

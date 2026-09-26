@@ -51,6 +51,7 @@ test('prelaunch mode needs a site address, then opens up to crawlers', () => {
   assert.throws(() => site.build('prelaunch'), /site\.url must be set before prelaunch/);
   site.config((config) => {
     config.site.url = 'https://example.com.au/';
+    config.person.email = 'jamil@example.com';
   });
   const { manifest } = site.build('prelaunch');
   const robots = readFileSync(join(site.dist, 'robots.txt'), 'utf8');
@@ -69,6 +70,7 @@ test('live mode refuses to build without the licence details (rule 9)', () => {
   const site = fresh();
   site.config((config) => {
     config.site.url = 'https://example.com.au';
+    config.person.email = 'jamil@example.com';
   });
   assert.throws(() => site.build('live'), (error) => {
     assert.match(error.message, /licence\.holderName or licence\.businessName/);
@@ -82,6 +84,7 @@ test('live mode with licence details shows them on every page', () => {
   const site = fresh();
   site.config((config) => {
     config.site.url = 'https://example.com.au';
+    config.person.email = 'jamil@example.com';
     config.licence = { holderName: 'Test Holder', businessName: null, number: '123456C', phone: '02 0000 0000' };
   });
   site.edit('content/milestones.json', (text) => text.replace('"status": "current"', '"status": "done"'));
@@ -100,7 +103,7 @@ test('drafts never build, and posts get their metadata', () => {
   const { manifest } = site.build();
 
   assert.ok(manifest.drafts.map((d) => d.slug).includes('unfinished'));
-  assert.ok(!manifest.pages.some((p) => p.path === '/journal/why-im-building-early/'));
+  assert.ok(!manifest.pages.some((p) => p.path === '/journal/first-apprentice-log/'));
   assert.equal(existsSync(join(site.dist, 'journal/unfinished')), false);
   assert.equal(existsSync(join(site.dist, 'journal/template')), false);
 

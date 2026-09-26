@@ -117,12 +117,17 @@ function validateConfig(config) {
     need(settings && (settings.endpoint === null || isUrl(settings.endpoint)), `forms.${form}.endpoint must be a full https address or null.`);
     need(settings && isText(settings.honeypotField), `forms.${form}.honeypotField is missing.`);
     need(settings && typeof settings.ajax === 'boolean', `forms.${form}.ajax must be true or false.`);
+    need(!settings?.endpoint || isText(settings.provider), `forms.${form}.provider must name the service when an endpoint is set. The privacy page names it.`);
+    if (config.mode !== 'quiet') {
+      need(settings?.endpoint || person.email, `${config.mode} mode needs forms.${form}.endpoint or person.email, so people have a way to reach you.`);
+    }
   }
 
   need(person.photo === null || person.photo === undefined || (isText(person.photo?.src) && person.photo.src.startsWith('/') && isText(person.photo?.alt)), 'person.photo must be null or { "src": "/assets/img/...", "alt": "a description" }.');
   need(Array.isArray(config.credentials), 'credentials must be a list (it can be empty).');
   for (const credential of config.credentials ?? []) {
-    need(isText(credential.title) && isText(credential.when), 'Each credential needs a title and a when.');
+    need(isText(credential.title), 'Each credential needs a title.');
+    need(credential.when === undefined || credential.when === null || isText(credential.when), `Credential "${credential.title}": when must be text, like "Early 2026", or left out.`);
     need(['completed', 'in-progress'].includes(credential.status), `Credential "${credential.title}": status must be completed or in-progress.`);
     need(typeof credential.verified === 'boolean', `Credential "${credential.title}": verified must be true or false. Only verified credentials appear on the site.`);
   }

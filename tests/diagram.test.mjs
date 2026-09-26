@@ -94,6 +94,7 @@ test('in live mode the path reaches the lamp and the lamp is lit', () => {
   const site = fresh();
   site.config((config) => {
     config.site.url = 'https://example.com.au';
+    config.person.email = 'jamil@example.com';
     config.licence = { holderName: 'Test Holder', businessName: null, number: '123456C', phone: '02 0000 0000' };
   });
   site.edit('content/milestones.json', (text) => text.replace(/"status": "(current|planned)"/g, '"status": "done"').replace(/("kind": "load",\s*"status": )"done"/, '$1"planned"'));

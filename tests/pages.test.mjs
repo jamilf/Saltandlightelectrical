@@ -17,7 +17,9 @@ const read = (site, file) => readFileSync(join(site.dist, file), 'utf8');
 const withForms = (site) =>
   site.config((config) => {
     config.forms.newsletter.endpoint = 'https://forms.example.com/newsletter';
+    config.forms.newsletter.provider = 'Example Mail';
     config.forms.contact.endpoint = 'https://forms.example.com/contact';
+    config.forms.contact.provider = 'Example Forms';
   });
 
 test('"Follow the build" is word for word the same in the nav, the heading, the button and the success message', () => {
@@ -57,10 +59,11 @@ test('with the forms in place, the check still passes (no quote or job options)'
   assert.deepEqual(rules(site.check()), []);
 });
 
-test('without endpoints the forms fall back to an email link, or a placeholder when there is no email', () => {
+test('without endpoints the forms fall back to an email link, or a plain note when there is no email', () => {
   const site = fresh();
   site.build();
-  assert.match(read(site, 'contact/index.html'), /\[\[BUILD: set forms\.contact\.endpoint or person\.email/);
+  assert.match(read(site, 'contact/index.html'), /The contact form opens soon\./);
+  assert.match(read(site, 'index.html'), /The email list opens soon\./);
   site.config((config) => {
     config.person.email = 'jamil@example.com';
   });
@@ -71,8 +74,12 @@ test('without endpoints the forms fall back to an email link, or a placeholder w
 
 test('only verified credentials appear, and in-progress ones say so', () => {
   const site = fresh();
+  site.config((config) => {
+    config.credentials = [{ title: 'White Card (general construction induction)', status: 'completed', verified: false }];
+  });
   site.build();
   assert.doesNotMatch(read(site, 'about/index.html'), /White Card/);
+  assert.match(read(site, 'about/index.html'), /Credentials will appear here as they&#39;re confirmed\.|Credentials will appear here as they're confirmed\./);
   site.config((config) => {
     config.credentials = [
       { title: 'White Card (general construction induction)', status: 'completed', when: '2025', verified: true },
@@ -100,8 +107,26 @@ test('the optional About sections stay off until their flags are on', () => {
   assert.match(read(site, 'about/index.html'), /How I communicate/);
 });
 
-test('the two draft outlines are in the repo but never built', () => {
+test('the apprentice log outline stays a draft, and the first entry is published', () => {
   const site = fresh();
   const { manifest } = site.build();
-  assert.deepEqual(manifest.drafts.map((draft) => draft.slug).sort(), ['first-apprentice-log', 'why-im-building-early']);
+  assert.deepEqual(manifest.drafts.map((draft) => draft.slug), ['first-apprentice-log']);
+  assert.ok(manifest.pages.some((page) => page.path === '/journal/why-im-building-early/'));
+});
+
+test('prelaunch refuses to build without a way to reach Jamil', () => {
+  const site = fresh();
+  site.config((config) => {
+    config.site.url = 'https://example.com.au';
+  });
+  assert.throws(() => site.build('prelaunch'), /prelaunch mode needs forms\.contact\.endpoint or person\.email/);
+});
+
+test('an endpoint without a provider name stops the build, so the privacy page is never vague', () => {
+  const site = fresh();
+  site.config((config) => {
+    config.forms.contact.endpoint = 'https://forms.example.com/contact';
+    config.forms.contact.provider = null;
+  });
+  assert.throws(() => site.build(), /forms\.contact\.provider must name the service/);
 });
