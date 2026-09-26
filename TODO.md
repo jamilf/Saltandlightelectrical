@@ -4,8 +4,8 @@ The site has no `[[placeholders]]` left, so it's ready to deploy in quiet mode. 
 
 ## In Cloudflare
 
-- [ ] Turn off Web Analytics' automatic setup for saltandlightelectrical.com (see "Cloudflare's automatic analytics" in `DEPLOY.md`). Cloudflare adds its script by default; the site blocks it, which shows up as a browser console error.
-- [ ] Add `www.saltandlightelectrical.com` as a custom domain. It has no DNS record yet, so it doesn't load.
+- [ ] Delete the Web Analytics entries for saltandlightelectrical.com (see "Cloudflare's automatic analytics" in `DEPLOY.md`). Cloudflare adds its script by default; the site blocks it, which shows up as a browser console error.
+- [x] `www.saltandlightelectrical.com` added as a custom domain, and it loads.
 - [ ] Turn off the `workers.dev` address, so the site has one address.
 
 ## Settings in `site.config.json`

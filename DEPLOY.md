@@ -88,11 +88,13 @@ Until an endpoint is set, the site shows your email address if `person.email` is
 
 ## Cloudflare's automatic analytics
 
-When a domain runs through Cloudflare, Cloudflare switches on Web Analytics by default and adds its own script to every page. This site's security policy blocks that script, so nothing is collected, but the blocked script shows as an error in the browser console and costs points on Lighthouse's best practices score. The privacy page says there's no analytics, so turn it off:
+When a domain runs through Cloudflare on the free plan, Cloudflare switches on real user monitoring (Web Analytics and Observatory both call it RUM) and adds its own script to every page a browser loads. This site's security policy blocks that script, so nothing is collected, but the blocked script shows as an error in the browser console and costs points on Lighthouse's best practices score. The privacy page says there's no analytics, so remove it:
 
 1. In the Cloudflare dashboard, open the **Web Analytics** page (https://dash.cloudflare.com/?to=/:account/web-analytics).
-2. Find `saltandlightelectrical.com` and select **Manage site**.
-3. Change the automatic setup to **Disable** and save.
+2. For each entry for this site (`saltandlightelectrical.com`, and `www.saltandlightelectrical.com` if it's listed), select **Manage site**, then **Delete**.
+3. Wait a few minutes. Choosing **Disable** instead of **Delete** may leave the script in place.
+
+To check, open the site in a browser, then open the developer tools console. There should be no error mentioning `cloudflareinsights`.
 
 If you ever want analytics, use the setup in step 8 instead, so the privacy page and the security policy are updated to match.
 
