@@ -1,0 +1,19 @@
+<article class="wrap post" data-category="{{ post.category.slug }}">
+  <header class="post__header">
+    <h1>{{ post.title }}</h1>
+    <dl class="post__meta">
+      <div><dt>Published</dt><dd><time datetime="{{ post.date }}">{{ post.dateLabel }}</time></dd></div>
+      <div><dt>Category</dt><dd><a href="{{ post.categoryUrl }}">{{ post.category.name }}</a></dd></div>
+      <div><dt>Written during</dt><dd>{{ post.stage.title }}</dd></div>
+      <div><dt>Reading time</dt><dd>{{ post.readingLabel }}</dd></div>
+    </dl>
+  </header>
+  {{#if post.safetyNote}}{{> safety-note }}{{/if}}
+  <div class="post__body">
+{{{ post.html }}}
+  </div>
+  {{#if post.hasPager}}<nav class="post__pager" aria-label="Other journal entries">
+    {{#if post.older}}<p>Previous entry: <a href="{{ post.older.url }}">{{ post.older.title }}</a></p>{{/if}}
+    {{#if post.newer}}<p>Next entry: <a href="{{ post.newer.url }}">{{ post.newer.title }}</a></p>{{/if}}
+  </nav>{{/if}}
+</article>

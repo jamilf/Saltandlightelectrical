@@ -1,0 +1,483 @@
+/* Salt and Light Electrical
+   One stylesheet. Tokens first, then base elements, then components.
+   Light theme only. */
+
+/* Fonts: Poppins, self-hosted, latin subset, three weights (SIL Open Font License, see fonts/OFL.txt). */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-500.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-600.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ---------- Tokens ---------- */
+:root {
+  /* Colour. Contrast ratios are in the Phase 0 plan and the styleguide. */
+  --salt: #f6f7f5;        /* page background, cool mineral white */
+  --paper: #ffffff;       /* raised surfaces */
+  --ink: #18263a;         /* body text, 14.2:1 on salt */
+  --ink-soft: #4a5a70;    /* secondary text, 6.5:1 on salt */
+  --blueprint: #0a2b5e;   /* headings, links, blueprint panels, 12.9:1 on salt */
+  --filament: #f5b301;    /* current stage, lit lamp, primary button fill. Never text on light. */
+  --rule: #d8dde3;        /* decorative hairlines only, too light for field borders */
+  --wire: #9dc1ee;        /* light-blue strokes and text on blueprint, 7.4:1 */
+  --field: #74839a;       /* form field borders, 3.9:1 on paper */
+  --alert: #a32a1c;       /* error text only, 7.2:1 on paper */
+  --core-active: #7b4a2a;
+  --core-neutral: #1d5fb4;
+  --core-earth-green: #2e8b3e;
+  --core-earth-yellow: #f2d22e;
+
+  /* Type. Scale of 1.25 from a 17px base (18px from 48em up). */
+  --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-drawing: 'Courier New', Courier, 'Liberation Mono', 'Nimbus Mono PS', monospace;
+  --ratio: 1.25;
+  --step-0: 1.0625rem;
+  --step-1: calc(var(--step-0) * var(--ratio));
+  --step-2: calc(var(--step-1) * var(--ratio));
+  --step-3: calc(var(--step-2) * var(--ratio));
+  --step-4: calc(var(--step-3) * var(--ratio));
+  --text-small: 0.9375rem;
+  --leading: 1.65;
+  --leading-tight: 1.2;
+  --measure: 62ch;
+
+  /* Space, on a 4px grid. */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Shape. Radius depends on what a thing is, not one radius for everything. */
+  --radius-sheet: 2px;     /* blueprint panels, like a drawing sheet */
+  --radius-control: 6px;   /* buttons and fields */
+  --radius-surface: 12px;  /* raised form panels */
+  --shadow-raised: 0 1px 2px rgba(10, 43, 94, 0.06), 0 8px 24px rgba(10, 43, 94, 0.07);
+
+  /* Layout. */
+  --gutter: 1rem;
+  --page-max: 72rem;
+  --focus-ring: 3px solid var(--blueprint);
+}
+
+@media (min-width: 48em) {
+  :root {
+    --step-0: 1.125rem;
+    --gutter: 2rem;
+  }
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--salt);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  font-weight: 400;
+  line-height: var(--leading);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 var(--space-4);
+  color: var(--blueprint);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--step-3);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: var(--step-2);
+}
+
+h3 {
+  font-size: var(--step-1);
+  color: var(--ink);
+}
+
+p,
+ul,
+ol,
+dl,
+blockquote {
+  margin: 0 0 var(--space-4);
+}
+
+p,
+li,
+dd {
+  max-width: var(--measure);
+}
+
+a {
+  color: var(--blueprint);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+main:focus {
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.page {
+  padding-block: var(--space-7);
+}
+
+.lede {
+  font-size: var(--step-1);
+  line-height: 1.5;
+}
+
+@media (min-width: 48em) {
+  h1 {
+    font-size: var(--step-4);
+  }
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -10rem;
+  z-index: 10;
+  padding: var(--space-2) var(--space-4);
+  background: var(--paper);
+  border-radius: var(--radius-control);
+  font-weight: 500;
+}
+
+.skip-link:focus {
+  top: var(--space-2);
+}
+
+/* ---------- Status notice: on every page, above everything else ---------- */
+.status-notice {
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink);
+  font-size: var(--text-small);
+  line-height: 1.5;
+}
+
+.status-notice__inner {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding-block: var(--space-3);
+}
+
+.status-notice p {
+  margin: 0;
+  max-width: none;
+}
+
+.status-notice__glyph {
+  flex: none;
+  margin-top: 0.15em;
+  fill: none;
+  stroke: var(--ink-soft);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.status-notice__glyph circle {
+  fill: var(--paper);
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-header__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'brand follow'
+    'nav nav';
+  gap: var(--space-3) var(--space-4);
+  align-items: center;
+  padding-block: var(--space-4);
+}
+
+.brand {
+  grid-area: brand;
+  color: var(--blueprint);
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.site-header__follow {
+  grid-area: follow;
+}
+
+.site-nav {
+  grid-area: nav;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding-block: var(--space-2);
+  color: var(--ink);
+  font-size: var(--text-small);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.site-nav a[aria-current] {
+  color: var(--blueprint);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.45em;
+}
+
+@media (min-width: 60em) {
+  .site-header__inner {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'brand nav follow';
+  }
+
+  .site-nav ul {
+    justify-content: flex-end;
+  }
+}
+
+/* ---------- Buttons ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-5);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-control);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button--primary {
+  background: var(--filament);
+  border-color: var(--filament);
+  color: var(--blueprint);
+}
+
+.button--secondary {
+  background: var(--paper);
+  border-color: var(--blueprint);
+  color: var(--blueprint);
+}
+
+/* ---------- Notes: safety note and contact disclaimer ---------- */
+.note {
+  max-width: var(--measure);
+  margin-block: var(--space-5);
+  padding: var(--space-4) var(--space-5);
+  background: var(--paper);
+  border-left: 3px solid var(--blueprint);
+  border-radius: 0 var(--radius-control) var(--radius-control) 0;
+}
+
+.note p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Journal ---------- */
+.category-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-5);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.category-nav a {
+  display: inline-block;
+  padding-block: var(--space-2);
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+.category-nav a:not([aria-current]) {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.post-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-list__item {
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+.post-list__date {
+  margin: 0 0 var(--space-1);
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+.post-list__title {
+  margin-bottom: var(--space-2);
+  font-size: var(--step-1);
+}
+
+.post__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: var(--space-3) var(--space-6);
+  max-width: var(--measure);
+  font-size: var(--text-small);
+}
+
+.post__meta dt {
+  color: var(--ink-soft);
+}
+
+.post__meta dd {
+  margin: 0;
+}
+
+.post__body {
+  margin-top: var(--space-6);
+}
+
+.post__body blockquote {
+  margin-left: 0;
+  padding-left: var(--space-5);
+  border-left: 3px solid var(--rule);
+}
+
+.post__pager {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--rule);
+}
+
+/* ---------- Footer, with the three cores running above it ---------- */
+.site-footer {
+  margin-top: var(--space-9);
+}
+
+.cores span {
+  display: block;
+  height: 2px;
+}
+
+.cores__active {
+  background: var(--core-active);
+}
+
+.cores__neutral {
+  background: var(--core-neutral);
+}
+
+.cores__earth {
+  background: repeating-linear-gradient(90deg, var(--core-earth-green) 0 18px, var(--core-earth-yellow) 18px 26px);
+}
+
+.site-footer__inner {
+  padding-block: var(--space-6) var(--space-7);
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+.site-footer__name {
+  color: var(--blueprint);
+  font-weight: 600;
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-5);
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__links a {
+  display: inline-block;
+  padding-block: var(--space-1);
+  color: var(--ink);
+}

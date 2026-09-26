@@ -1,0 +1,28 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>{{ head.title }}</title>
+<meta name="description" content="{{ head.description }}">
+{{#if head.robots}}<meta name="robots" content="{{ head.robots }}">{{/if}}
+{{#if head.canonical}}<link rel="canonical" href="{{ head.canonical }}">{{/if}}
+<link rel="preload" href="{{ assets.font400 }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ assets.css }}">
+{{#if assets.favicon}}<link rel="icon" href="{{ assets.favicon }}" type="image/svg+xml">{{/if}}
+{{#if assets.appleTouchIcon}}<link rel="apple-touch-icon" href="{{ assets.appleTouchIcon }}">{{/if}}
+<link rel="alternate" type="application/rss+xml" title="{{ site.name }} journal" href="/rss.xml">
+<meta property="og:type" content="{{ head.ogType }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:locale" content="en_AU">
+<meta property="og:title" content="{{ head.ogTitle }}">
+<meta property="og:description" content="{{ head.description }}">
+<meta property="og:url" content="{{ head.url }}">
+{{#if head.ogImage}}<meta property="og:image" content="{{ head.ogImage }}">
+<meta property="og:image:alt" content="{{ head.ogImageAlt }}">{{/if}}
+<meta name="twitter:card" content="{{ head.twitterCard }}">
+<meta name="twitter:title" content="{{ head.ogTitle }}">
+<meta name="twitter:description" content="{{ head.description }}">
+{{#if analytics.googleSiteVerification}}<meta name="google-site-verification" content="{{ analytics.googleSiteVerification }}">{{/if}}
+{{#if analytics.bingSiteVerification}}<meta name="msvalidate.01" content="{{ analytics.bingSiteVerification }}">{{/if}}
+{{#if assets.js}}<script src="{{ assets.js }}" defer></script>{{/if}}
+{{#if assets.analyticsToken}}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ assets.analyticsToken }}"}'></script>{{/if}}
+{{{ head.jsonLd }}}
