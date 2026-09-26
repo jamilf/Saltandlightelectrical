@@ -1,0 +1,21 @@
+{{#if forms.newsletter.endpoint}}
+<form class="form-panel" action="{{ forms.newsletter.endpoint }}" method="post" data-form="newsletter"{{#if forms.newsletter.ajax}} data-ajax="true"{{/if}} data-success="You're following the build. Expect a few emails a year.">
+  <p>A short email when something on the road to launch changes. That's a few a year, and every one has an unsubscribe link.</p>
+  <div class="field">
+    <label class="field__label" for="follow-email">Email address</label>
+    <p class="field__error" id="follow-email-error" hidden></p>
+    <input class="input" id="follow-email" name="{{ forms.newsletter.emailField }}" type="email" autocomplete="email" spellcheck="false" required data-missing="Enter your email address." data-invalid="Enter an email address with an @, like name@example.com.">
+  </div>
+  <div class="hp" aria-hidden="true">
+    <label for="follow-website">Leave this empty</label>
+    <input id="follow-website" name="{{ forms.newsletter.honeypotField }}" type="text" tabindex="-1" autocomplete="off">
+  </div>
+  <button class="button button--primary" type="submit">Follow the build</button>
+</form>
+{{else}}
+<div class="form-panel">
+  <p>A short email when something on the road to launch changes. That's a few a year.</p>
+  {{#if person.email}}<p>The email list isn't set up yet. Until it is, <a href="mailto:{{ person.email }}?subject=Follow%20the%20build">email me to follow the build</a> and I'll add you when it's ready.</p>{{else}}<p>[[BUILD: set forms.newsletter.endpoint or person.email in site.config.json]]</p>{{/if}}
+</div>
+{{/if}}
+{{#if person.linkedin}}<p class="follow-linkedin"><a href="{{ person.linkedin }}">Follow along on LinkedIn</a></p>{{/if}}

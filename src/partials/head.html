@@ -26,6 +26,6 @@
 <meta name="twitter:description" content="{{ head.description }}">
 {{#if analytics.googleSiteVerification}}<meta name="google-site-verification" content="{{ analytics.googleSiteVerification }}">{{/if}}
 {{#if analytics.bingSiteVerification}}<meta name="msvalidate.01" content="{{ analytics.bingSiteVerification }}">{{/if}}
-{{#if assets.js}}<script src="{{ assets.js }}" defer></script>{{/if}}
+{{#if page.forms}}<script src="{{ assets.js }}" defer></script>{{/if}}
 {{#if assets.analyticsToken}}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ assets.analyticsToken }}"}'></script>{{/if}}
 {{{ head.jsonLd }}}
