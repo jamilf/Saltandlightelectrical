@@ -1,0 +1,87 @@
+{
+  "drawing": {
+    "number": "SLE-001",
+    "title": "Road to launch"
+  },
+
+  "stages": [
+    {
+      "id": "it-career",
+      "ref": "S1",
+      "status": "done",
+      "title": "IT operations and application support",
+      "short": "IT work",
+      "when": "About eight years, [[JAMIL: start and end years]]",
+      "explain": "[[JAMIL: one or two sentences on what that work taught you]]"
+    },
+    {
+      "id": "cert-ii",
+      "ref": "S2",
+      "status": "done",
+      "title": "Certificate II in Electrotechnology",
+      "short": "Certificate II",
+      "when": "Early 2026",
+      "explain": "[[JAMIL: one or two sentences on the course]]"
+    },
+    {
+      "id": "finding-apprenticeship",
+      "ref": "S3",
+      "status": "current",
+      "title": "Looking for an electrical apprenticeship",
+      "short": "Finding an apprenticeship",
+      "when": "2026",
+      "learning": "[[JAMIL: what you're learning or working on while you apply]]",
+      "explain": "An apprenticeship is paid work in the trade, alongside study, under the supervision of licensed electricians."
+    },
+    {
+      "id": "apprenticeship",
+      "ref": "S4",
+      "status": "planned",
+      "title": "Apprenticeship and Certificate III in Electrotechnology Electrician (UEE30820)",
+      "short": "Apprenticeship",
+      "when": "[[JAMIL: expected years and duration]]",
+      "explain": "[[JAMIL: one or two sentences]]"
+    },
+    {
+      "id": "qualified-supervisor",
+      "ref": "S5",
+      "status": "planned",
+      "title": "Qualified supervisor certificate, electrician",
+      "short": "Supervisor certificate",
+      "when": "[[JAMIL: year]]",
+      "explain": "[[VERIFY: plain explanation of the qualified supervisor certificate, checked against the NSW electrical work page]]"
+    },
+    {
+      "id": "licensed-experience",
+      "ref": "S6",
+      "status": "planned",
+      "title": "Experience as a licensed electrician",
+      "short": "Licensed work",
+      "when": "[[JAMIL: years]]",
+      "explain": "[[JAMIL: one or two sentences]]"
+    },
+    {
+      "id": "contractor-licence",
+      "ref": "S7",
+      "status": "planned",
+      "title": "Contractor licence, insurance, ABN and business name",
+      "short": "Licence and ABN",
+      "when": "[[JAMIL: year]]",
+      "explain": "[[VERIFY: plain explanation of the contractor licence, checked against the NSW electrical work page]]"
+    },
+    {
+      "id": "opens",
+      "ref": "L1",
+      "kind": "load",
+      "status": "planned",
+      "title": "Salt and Light Electrical opens",
+      "short": "Opens",
+      "when": "Target {launchYear}",
+      "explain": "Planned for {launchYear}, once licensed."
+    }
+  ],
+
+  "revisions": [
+    { "rev": "A", "date": "2026-09-26", "note": "First issue. Site set up in quiet mode." }
+  ]
+}

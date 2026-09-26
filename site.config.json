@@ -1,0 +1,106 @@
+{
+  "mode": "quiet",
+
+  "site": {
+    "name": "Salt and Light Electrical",
+    "url": null,
+    "language": "en-AU",
+    "launchYear": 2032,
+    "ogImage": null,
+    "ogImageAlt": null
+  },
+
+  "person": {
+    "name": "Jamil Flores",
+    "firstName": "Jamil",
+    "drawnBy": "J. Flores",
+    "statusPhrase": "looking for an electrical apprenticeship",
+    "jobTitle": null,
+    "email": null,
+    "linkedin": null
+  },
+
+  "notices": {
+    "status": "Salt and Light Electrical isn't trading yet. {name} is {statusPhrase} and doesn't offer electrical services or hold an electrical contractor licence.",
+    "safetyNote": "General information only. In NSW, electrical work must be done by a licensed electrician. Don't attempt it yourself.",
+    "contactDisclaimer": "I'm not taking on electrical work yet. If you need an electrician now, please use a licensed electrical contractor.",
+    "licenceCheckLinkText": "Check a contractor's licence on Service NSW",
+    "licenceCheckUrl": "https://www.service.nsw.gov.au/transaction/check-a-builder-or-tradesperson-licence"
+  },
+
+  "nav": [
+    { "label": "Road to launch", "path": "/road-to-launch/" },
+    { "label": "Journal", "path": "/journal/" },
+    { "label": "About", "path": "/about/" },
+    { "label": "Contact", "path": "/contact/" }
+  ],
+  "followPath": "/#follow-the-build",
+
+  "journal": {
+    "wordsPerMinute": 200,
+    "categories": [
+      { "slug": "apprentice-log", "name": "Apprentice log", "description": "Notes from learning the trade, written as it happens." },
+      { "slug": "how-it-works", "name": "How it works", "description": "Plain explanations of how electrical things work. General information, never instructions.", "safetyNote": true },
+      { "slug": "tools-and-kit", "name": "Tools and kit", "description": "The tools I use, what they're for and how I look after them." },
+      { "slug": "building-the-business", "name": "Building the business", "description": "Planning Salt and Light Electrical, years before it opens." }
+    ]
+  },
+
+  "forms": {
+    "newsletter": { "provider": null, "endpoint": null, "emailField": "email", "honeypotField": "website" },
+    "contact": { "provider": null, "endpoint": null, "honeypotField": "website" }
+  },
+
+  "features": {
+    "aboutCommunity": false,
+    "aboutCommunication": false
+  },
+
+  "analytics": {
+    "cloudflareWebAnalyticsToken": null,
+    "googleSiteVerification": null,
+    "bingSiteVerification": null
+  },
+
+  "crawlers": {
+    "allow": ["Googlebot", "Bingbot", "ClaudeBot", "GPTBot", "PerplexityBot"]
+  },
+
+  "licence": {
+    "holderName": null,
+    "businessName": null,
+    "number": null,
+    "phone": null
+  },
+
+  "compliance": {
+    "offerPhrases": [
+      "get a quote", "free quote", "request a quote", "book an electrician", "book now",
+      "call now", "call us", "emergency electrician", "24/7", "same day", "we service",
+      "servicing", "areas we service", "available for work", "hire me"
+    ],
+    "statusClaims": [
+      "licensed and insured", "fully licensed", "fully qualified", "I'm a licensed",
+      "I am a licensed", "we're licensed", "we are licensed", "our electricians",
+      "our team", "master electrician"
+    ],
+    "contactOptionTerms": ["quote", "job", "price", "pricing", "booking", "estimate"],
+    "bannedPathSegments": ["services", "service-area", "service-areas", "suburbs", "quote", "quotes", "book", "booking"],
+    "allowedSchemaTypes": ["WebSite", "Person", "BlogPosting"],
+    "bannedSchemaProperties": ["areaServed", "telephone", "priceRange", "review", "aggregateRating", "offers", "makesOffer", "hasOfferCatalog"]
+  },
+
+  "style": {
+    "bannedWords": [
+      "elevate", "unlock", "seamless", "empower", "leverage", "cutting-edge", "robust",
+      "delve", "journey", "passionate", "world-class", "one-stop shop", "quality you can trust",
+      "in today's", "whether you're"
+    ],
+    "vagueLinkText": ["click here", "here", "read more", "more", "link", "this"],
+    "properNouns": [
+      "Salt", "Light", "Electrical", "Jamil", "Flores", "NSW", "Western", "Sydney",
+      "Certificate", "II", "III", "Electrotechnology", "Electrician", "LinkedIn", "Matthew",
+      "RSS", "ABN", "White", "Card", "Service", "Australia", "Australian", "I", "I'm", "I've", "I'll"
+    ]
+  }
+}

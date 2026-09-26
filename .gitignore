@@ -1,0 +1,18 @@
+# Build output
+dist/
+.build/
+
+# The private project brief, and words the check should catch that never get committed
+BRIEF.md
+*.brief.md
+private.check.json
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Cloudflare local state
+.wrangler/
+node_modules/
