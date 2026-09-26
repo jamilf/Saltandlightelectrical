@@ -48,6 +48,9 @@ test('every page carries the status notice with the wording from config', () => 
 
 test('prelaunch mode needs a site address, then opens up to crawlers', () => {
   const site = fresh();
+  site.config((config) => {
+    config.site.url = null;
+  });
   assert.throws(() => site.build('prelaunch'), /site\.url must be set before prelaunch/);
   site.config((config) => {
     config.site.url = 'https://example.com.au/';

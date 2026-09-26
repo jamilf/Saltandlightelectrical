@@ -24,15 +24,17 @@ Sign up at https://dash.cloudflare.com/sign-up. The free plan is enough.
 
    | Setting | Value |
    |---|---|
-   | Project name | `salt-and-light-electrical` (it must match `name` in `wrangler.jsonc`) |
+   | Project name | `saltandlightelectrical` (it must match `name` in `wrangler.jsonc`) |
    | Production branch | `main` |
-   | Build command | `node tools/build.mjs && node tools/check.mjs` |
+   | Build command | leave empty (see below) |
    | Deploy command | `npx wrangler deploy` |
    | Root directory | leave empty |
 
-4. Select **Deploy**. The first build takes a minute or two. In the build log you should see `Check passed`, then the deploy.
+   The build command can stay empty because `wrangler.jsonc` tells wrangler to build and check the site itself before every deploy. If you'd rather see it in the dashboard too, `node tools/build.mjs && node tools/check.mjs` works there as well; the site then builds twice, which does no harm.
 
-When it finishes, Cloudflare shows the address, something like `https://salt-and-light-electrical.<your-name>.workers.dev`. That address is public: anyone you send it to can open it.
+4. Select **Deploy**. The first build takes a minute or two. In the build log you should see `[custom build] Check passed`, then the upload.
+
+When it finishes, Cloudflare shows the address, something like `https://saltandlightelectrical.<your-name>.workers.dev`. That address is public: anyone you send it to can open it.
 
 The project uses Node 22, set by the `.node-version` file. If a build ever complains about the Node version, add a build variable `NODE_VERSION` with the value `22` under the project's **Settings > Build**.
 
@@ -41,7 +43,7 @@ The project uses Node 22, set by the `.node-version` file. If a build ever compl
 The site needs its own address for links in search results, the RSS feed and link previews.
 
 1. On GitHub, open `site.config.json` and select the pencil to edit it.
-2. Change `"url": null` to your address in quotes, for example `"url": "https://salt-and-light-electrical.your-name.workers.dev"`.
+2. Change `"url": null` to your address in quotes, for example `"url": "https://saltandlightelectrical.your-name.workers.dev"`.
 3. Commit. Cloudflare rebuilds on its own.
 
 ## 5. Quiet or public: choose the mode
@@ -64,7 +66,7 @@ If you plan to use your own domain, set it up (step 6) before prelaunch, so sear
 2. If you bought it elsewhere, add it to Cloudflare (**Add a domain**) and change its nameservers at your registrar to the two Cloudflare gives you.
 3. Open your Worker, then **Settings > Domains & Routes > Add > Custom domain**, and enter the domain.
 4. Update `site.url` in `site.config.json` to the new address and commit.
-5. Once the domain works, turn off the `workers.dev` address in **Settings > Domains & Routes**, so the site has one address.
+5. Once the domain works, turn off the `workers.dev` address in **Settings > Domains & Routes**, so the site has one address. `wrangler.jsonc` has `"workers_dev": false`, which keeps it off; without that line, every deploy switches it back on.
 
 ## 7. The forms
 
@@ -84,9 +86,23 @@ Until an endpoint is set, the site shows your email address if `person.email` is
 - **Search engines:** after going to prelaunch, verify the site in Google Search Console and Bing Webmaster Tools. Put their verification codes in `analytics.googleSiteVerification` and `analytics.bingSiteVerification`.
 - **Locking quiet mode:** if you'd rather only invited people see the site while it's quiet, Cloudflare Access can put a login in front of it.
 
+## Cloudflare's automatic analytics
+
+When a domain runs through Cloudflare on the free plan, Cloudflare switches on real user monitoring (Web Analytics and Observatory both call it RUM) and adds its own script to every page a browser loads. This site's security policy blocks that script, so nothing is collected, but the blocked script shows as an error in the browser console and costs points on Lighthouse's best practices score. The privacy page says there's no analytics, so remove it:
+
+1. In the Cloudflare dashboard, open the **Web Analytics** page (https://dash.cloudflare.com/?to=/:account/web-analytics).
+2. For each entry for this site (`saltandlightelectrical.com`, and `www.saltandlightelectrical.com` if it's listed), select **Manage site**, then **Delete**.
+3. Wait a few minutes. Choosing **Disable** instead of **Delete** may leave the script in place.
+
+To check, open the site in a browser, then open the developer tools console. There should be no error mentioning `cloudflareinsights`.
+
+If you ever want analytics, use the setup in step 8 instead, so the privacy page and the security policy are updated to match.
+
 ## When a build fails
 
-Open the project in **Workers & Pages** and look at the latest build's log. The check prints each failure with the rule it broke, the page and what to change. Fix it, commit, and Cloudflare tries again. Running `node tools/build.mjs && node tools/check.mjs` on your computer shows the same thing before you push.
+Open the project in **Workers & Pages** and look at the latest build's log. The check prints each failure (lines starting `[custom build]`) with the rule it broke, the page and what to change. Fix it, commit, and Cloudflare tries again. Running `node tools/build.mjs && node tools/check.mjs` on your computer shows the same thing before you push.
+
+**"The directory specified by the assets.directory field does not exist"** means `dist/` was never built. Check that `wrangler.jsonc` still has its `build` section, and that the deploy command is `npx wrangler deploy` run from the top of the repository (root directory empty).
 
 ## Cloudflare guides
 

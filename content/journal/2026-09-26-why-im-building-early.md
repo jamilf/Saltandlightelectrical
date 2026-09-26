@@ -7,7 +7,7 @@ stage: finding-apprenticeship
 photos: none
 ---
 
-Salt and Light Electrical doesn't do any electrical work. I'm not licensed, I'm not trading, and I won't be until the business opens, planned for 2032. So it's fair to wonder why it already has a website.
+Salt and Light Electrical doesn't do any electrical work yet. I'm not licensed, and the business isn't planned to open until 2032. So it's fair to wonder why it already has a website.
 
 ## A record you can check
 

@@ -25,6 +25,7 @@ Live mode stays off until every item here is true. The build already refuses liv
 - [ ] NSW advertising and licensing rules re-checked against current official sources, since they may have changed after 2026:
   - Building trade advertisements: https://www.nsw.gov.au/business-and-economy/running-a-business/advertising-laws-and-your-business/building-trade-advertisements
   - Electrical work licensing: https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/electrical
+  - Licence types, including what a contractor licence and a qualified supervisor certificate allow: https://www.nsw.gov.au/business-and-economy/licences-and-credentials/building-and-trade-licences-and-registrations/apply
   - Home Building Regulation 2014, clause 33: https://www5.austlii.edu.au/au/legis/nsw/consol_reg/hbr2014219/s33.html
 
 ## Only then, build
@@ -37,3 +38,5 @@ Live mode stays off until every item here is true. The build already refuses liv
 - [ ] A reviews policy.
 - [ ] The lit lamp: set the last stage in `content/milestones.json` to done, then switch `mode` to `live`.
 - [ ] Update `CLAUDE.md` so the rules match live mode.
+
+The site's wording was last checked against these pages on 26 September 2026. AustLII blocked automated access, so clause 33 was checked through the NSW Government's advertising page, which sets out the same requirements.
