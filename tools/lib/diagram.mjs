@@ -117,7 +117,7 @@ export function renderDiagram(milestones, config, options = {}) {
   ];
 
   return [
-    `<section class="sld sld--${compact ? 'compact' : 'full'}" aria-label="Road to launch, drawing ${e(milestones.drawing.number)}">`,
+    `<section class="sld sld--${compact ? 'compact' : 'full'}" aria-label="${compact ? 'Road to launch at a glance' : 'Road to launch'}, drawing ${e(milestones.drawing.number)}">`,
     '<div class="sld__sheet">',
     `<ol class="sld__stages">\n${items.join('\n')}\n</ol>`,
     '<div class="sld__footer">',

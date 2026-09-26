@@ -170,6 +170,15 @@ a:hover {
   outline-offset: 2px;
 }
 
+/* Keep a focused control clear of the screen edge, so its focus ring is never clipped. */
+a,
+button,
+input,
+select,
+textarea {
+  scroll-margin-block: var(--space-7);
+}
+
 main:focus {
   outline: none;
 }
@@ -875,6 +884,11 @@ img {
 .title-block dd {
   margin: 0;
   font-weight: 700;
+}
+
+.sld__more a {
+  display: inline-block;
+  padding-block: var(--space-1);
 }
 
 .sld__key {
