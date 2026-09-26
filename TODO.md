@@ -24,9 +24,9 @@ The site has no `[[placeholders]]` left, so it's ready to deploy in quiet mode. 
 These were drafted for you. Some state things about you that came from the brief or were reasonable guesses, and those are marked **check**.
 
 ### Home
-- [ ] Hero line: "I'm Jamil. I'm looking for an electrical apprenticeship in Western Sydney, and this is where I'm building Salt and Light Electrical in public, from apprentice to licensed contractor."
+- [ ] Hero line: "I'm Jamil, and I'm looking for an electrical apprenticeship in Western Sydney. This site is where I'm building Salt and Light Electrical in public, one dated step at a time, from apprentice to licensed contractor."
 - [ ] Why the name.
-- [ ] What I'm building, including "Two promises sit under it" and "Until then I'm not offering electrical work of any kind."
+- [ ] What I'm building, including "It rests on two promises" and "Until then, I'm not offering electrical work of any kind."
 
 ### Road to launch
 - [ ] The introduction explaining the drawing.
@@ -37,7 +37,7 @@ These were drafted for you. Some state things about you that came from the brief
 - [x] S5 and S7 explanations checked on 26 September 2026 against the NSW pages listed in `LAUNCH.md`. They match.
 
 ### About
-- [ ] **Check** the IT paragraph: "keeping the systems that businesses rely on running. It taught me to write down what I did and why, and to stay calm when something breaks at the worst possible moment."
+- [ ] **Check** the IT paragraph: "keeping the systems businesses rely on up and running. It taught me to write down what I did and why, and to stay calm when something breaks at the worst possible moment."
 - [ ] **Check** why you moved to the trade: "I wanted to work with my hands on things people can see and depend on, and one day to run a business of my own." This one is a guess. Replace it with your real reason.
 - [ ] Why the name, including "My faith matters to me, and it's why the business has this name. You don't need to share it to follow along. Everyone is welcome here."
 - [ ] **Check** credentials in `site.config.json`: the Certificate II's exact title and code, and that your White Card and first aid certificate are current. Set `verified` to false for anything you can't confirm.

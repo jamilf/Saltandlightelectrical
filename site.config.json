@@ -48,7 +48,7 @@
     "categories": [
       { "slug": "apprentice-log", "name": "Apprentice log", "description": "Notes from learning the trade, written as it happens." },
       { "slug": "how-it-works", "name": "How it works", "description": "Plain explanations of how electrical things work. General information, never instructions.", "safetyNote": true },
-      { "slug": "tools-and-kit", "name": "Tools and kit", "description": "The tools I use, what they're for and how I look after them." },
+      { "slug": "tools-and-kit", "name": "Tools and kit", "description": "The tools I use, and how I look after them." },
       { "slug": "building-the-business", "name": "Building the business", "description": "Planning Salt and Light Electrical, years before it opens." }
     ]
   },
