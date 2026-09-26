@@ -1,0 +1,15 @@
+<div class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/">
+      {{> mark }}
+      <span class="brand__name"><span>Salt and Light</span> <span>Electrical</span></span>
+    </a>
+    <a class="button button--secondary site-header__follow" href="{{ followPath }}">Follow the build</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        {{#each nav}}<li><a href="{{ path }}"{{#if current}} aria-current="{{ currentValue }}"{{/if}}>{{ label }}</a></li>
+        {{/each}}
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+{
+  "drawing": {
+    "number": "SLE-001",
+    "title": "Road to launch"
+  },
+
+  "stages": [
+    {
+      "id": "it-career",
+      "ref": "S1",
+      "status": "done",
+      "title": "IT operations and application support",
+      "short": "IT work",
+      "when": "About eight years",
+      "explain": "Keeping business systems running meant writing down what was done and why, and staying calm when something broke at the worst moment. Those habits are coming with me into the trade."
+    },
+    {
+      "id": "cert-ii",
+      "ref": "S2",
+      "status": "done",
+      "title": "Certificate II in Electrotechnology",
+      "short": "Certificate II",
+      "when": "Early 2026",
+      "explain": "A pre-apprenticeship course covering the basics of electrical principles, tools and working safely. It's a common first step towards an electrical apprenticeship."
+    },
+    {
+      "id": "finding-apprenticeship",
+      "ref": "S3",
+      "status": "current",
+      "title": "Looking for an electrical apprenticeship",
+      "short": "Finding an apprenticeship",
+      "when": "2026",
+      "learning": "How apprenticeships work in NSW, and what employers look for in a first-year apprentice",
+      "explain": "An apprenticeship is paid work in the trade, alongside study, under the supervision of licensed electricians. Finding the right employer matters more than finding the first one."
+    },
+    {
+      "id": "apprenticeship",
+      "ref": "S4",
+      "status": "planned",
+      "title": "Apprenticeship and Certificate III in Electrotechnology Electrician (UEE30820)",
+      "short": "Apprenticeship",
+      "when": "About four years",
+      "explain": "Paid work on the tools under licensed electricians, with study alongside it. It finishes with the Certificate III in Electrotechnology Electrician, the qualification an electrician's licence is built on."
+    },
+    {
+      "id": "qualified-supervisor",
+      "ref": "S5",
+      "status": "planned",
+      "title": "Qualified supervisor certificate, electrician",
+      "short": "Supervisor certificate",
+      "when": "After the apprenticeship",
+      "explain": "The NSW certificate that lets an electrician carry out and supervise electrical work. On its own it doesn't allow contracting or advertising, so it isn't the finish line."
+    },
+    {
+      "id": "licensed-experience",
+      "ref": "S6",
+      "status": "planned",
+      "title": "Experience as a licensed electrician",
+      "short": "Licensed work",
+      "when": "Until opening",
+      "explain": "Time working as a licensed electrician, learning how good contractors run their jobs, their paperwork and their businesses."
+    },
+    {
+      "id": "contractor-licence",
+      "ref": "S7",
+      "status": "planned",
+      "title": "Contractor licence, insurance, ABN and business name",
+      "short": "Licence and ABN",
+      "when": "Before opening",
+      "explain": "In NSW, an electrical contractor licence is what allows someone to contract and advertise for electrical work, and every advertisement has to show the licence number. Insurance, an ABN and a registered business name are set up at the same stage."
+    },
+    {
+      "id": "opens",
+      "ref": "L1",
+      "kind": "load",
+      "status": "planned",
+      "title": "Salt and Light Electrical opens",
+      "short": "Opens",
+      "when": "Target {launchYear}",
+      "explain": "The lamp lights up. Planned for {launchYear}, once licensed."
+    }
+  ],
+
+  "revisions": [
+    { "rev": "A", "date": "2026-09-26", "note": "First issue. Site set up in quiet mode." }
+  ]
+}

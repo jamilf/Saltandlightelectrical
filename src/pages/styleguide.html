@@ -1,0 +1,162 @@
+---
+title: Styleguide
+description: Every component used on this site, in one place, for checking changes.
+noindex: true
+sitemap: false
+---
+<div class="wrap page">
+  <h1>Styleguide</h1>
+  <p class="lede">Every component on the site, in one place. This page is hidden from search engines and left out of the sitemap.</p>
+
+  <section class="spec" aria-labelledby="sg-mark">
+    <h2 id="sg-mark">Mark and wordmark</h2>
+    <div class="spec__body">
+      <p>A letter S drawn as a cable run between two terminals. One colour: blueprint on light backgrounds, white on blueprint. The wordmark is Poppins at weight 600.</p>
+      <div class="mark-row">
+        <span class="brand">{{> mark }}<span>Salt and Light Electrical</span></span>
+        <span class="mark-row__dark">{{> mark }}</span>
+        <img src="/favicon.svg" width="32" height="32" alt="The favicon at 32 pixels">
+        <img src="/favicon.svg" width="16" height="16" alt="The favicon at 16 pixels">
+      </div>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="sg-colour">
+    <h2 id="sg-colour">Colour</h2>
+    <div class="spec__body">
+      <ul class="swatches">
+        <li class="swatch"><div class="swatch__chip chip-salt"></div><p><strong>Salt</strong> #F6F7F5</p><p>Page background</p></li>
+        <li class="swatch"><div class="swatch__chip chip-paper"></div><p><strong>Paper</strong> #FFFFFF</p><p>Raised surfaces</p></li>
+        <li class="swatch"><div class="swatch__chip chip-ink"></div><p><strong>Ink</strong> #18263A</p><p>Body text, 14.2:1 on salt</p></li>
+        <li class="swatch"><div class="swatch__chip chip-ink-soft"></div><p><strong>Ink soft</strong> #4A5A70</p><p>Secondary text, 6.5:1 on salt</p></li>
+        <li class="swatch"><div class="swatch__chip chip-blueprint"></div><p><strong>Blueprint</strong> #0A2B5E</p><p>Headings, links, panels, 12.9:1 on salt</p></li>
+        <li class="swatch"><div class="swatch__chip chip-filament"></div><p><strong>Filament</strong> #F5B301</p><p>Current stage, lit lamp, primary button. Never text on light.</p></li>
+        <li class="swatch"><div class="swatch__chip chip-wire"></div><p><strong>Wire</strong> #9DC1EE</p><p>Strokes and text on blueprint, 7.4:1</p></li>
+        <li class="swatch"><div class="swatch__chip chip-field"></div><p><strong>Field</strong> #74839A</p><p>Form field borders, 3.9:1 on paper</p></li>
+        <li class="swatch"><div class="swatch__chip chip-alert"></div><p><strong>Alert</strong> #A32A1C</p><p>Error text only, 7.2:1 on paper</p></li>
+        <li class="swatch"><div class="swatch__chip chip-rule"></div><p><strong>Rule</strong> #D8DDE3</p><p>Decorative hairlines only</p></li>
+      </ul>
+      <p>The three core colours (brown active, blue neutral, green and yellow earth) appear once, as the stripe above the footer.</p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="sg-type">
+    <h2 id="sg-type">Type</h2>
+    <div class="spec__body">
+      <p class="sg-h1" aria-hidden="true">Heading one, 44 pixels</p>
+      <p class="sg-h2" aria-hidden="true">Heading two, 28 pixels</p>
+      <h3>Heading three, a step down</h3>
+      <p class="lede">Lede text for the first paragraph of a page.</p>
+      <p>Body text is Poppins at 18 pixels with a line height of 1.65, kept under 70 characters a line. Links look <a href="/journal/">like this journal link</a>, underlined so colour isn't the only clue.</p>
+      <p class="specimen specimen--drawing">Courier New appears only inside blueprint panels.</p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="sg-buttons">
+    <h2 id="sg-buttons">Buttons</h2>
+    <div class="spec__body">
+      <p>One amber button per screen. Every other button is the outlined one.</p>
+      <p class="button-row">
+        <a class="button button--primary" href="#sg-buttons">Follow the build</a>
+        <a class="button button--primary is-hover" href="#sg-buttons">Hover</a>
+        <a class="button button--primary is-focus" href="#sg-buttons">Focus</a>
+        <button class="button button--primary" type="button" disabled>Disabled</button>
+      </p>
+      <p class="button-row">
+        <a class="button button--secondary" href="#sg-buttons">Read the journal</a>
+        <a class="button button--secondary is-hover" href="#sg-buttons">Hover</a>
+        <a class="button button--secondary is-focus" href="#sg-buttons">Focus</a>
+        <button class="button button--secondary" type="button" disabled>Disabled</button>
+      </p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="sg-forms">
+    <h2 id="sg-forms">Form fields</h2>
+    <div class="spec__body">
+      <form class="form-panel" action="#sg-forms" aria-label="Example form">
+        <div class="field">
+          <label class="field__label" for="sg-name">Your name</label>
+          <input class="input" id="sg-name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label class="field__label" for="sg-email">Email address</label>
+          <p class="field__hint" id="sg-email-hint">So I can reply. I won't add it to any list.</p>
+          <input class="input is-focus" id="sg-email" name="email" type="email" aria-describedby="sg-email-hint">
+        </div>
+        <div class="field field--error">
+          <label class="field__label" for="sg-email-bad">Email address, with an error</label>
+          <p class="field__error" id="sg-email-bad-error">Enter an email address with an @, like name@example.com.</p>
+          <input class="input" id="sg-email-bad" name="email-bad" type="email" value="jamil.example.com" aria-invalid="true" aria-describedby="sg-email-bad-error">
+        </div>
+        <div class="field">
+          <label class="field__label" for="sg-reason">Why you're getting in touch</label>
+          <select class="select" id="sg-reason" name="reason">
+            <option>I'm an apprentice or tradie</option>
+            <option>I'd like to share advice or mentor</option>
+            <option>I work in building or property</option>
+            <option>I'm following along</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="sg-message">Message</label>
+          <textarea class="textarea" id="sg-message" name="message"></textarea>
+        </div>
+        <div class="field">
+          <label class="field__label" for="sg-disabled">Disabled field</label>
+          <input class="input" id="sg-disabled" name="disabled" type="text" value="Not editable" disabled>
+        </div>
+        <button class="button button--secondary" type="button">Send message</button>
+        <p class="form-message" role="status">You're following the build. Expect a few emails a year.</p>
+        <p class="form-message form-message--error">That didn't send because the connection dropped. Check you're online and try again.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="sg-status">
+    <h2 id="sg-status">Status</h2>
+    <div class="spec__body">
+      <p>The status notice sits above the header on every page. Its wording lives in site.config.json and the check fails if a page changes it.</p>
+      <h3>Status block</h3>
+      {{> status-block }}
+      <h3>Safety note</h3>
+      {{> safety-note }}
+      <h3>Contact disclaimer</h3>
+      {{> contact-disclaimer }}
+    </div>
+  </section>
+
+  <section aria-labelledby="sg-diagram">
+    <h2 id="sg-diagram">Road to launch, full</h2>
+    {{{ diagram.full }}}
+    <h2>Road to launch, compact</h2>
+    {{{ diagram.compact }}}
+  </section>
+
+  <section class="spec" aria-labelledby="sg-revisions">
+    <h2 id="sg-revisions">Revision table</h2>
+    <div class="spec__body">
+      {{> revision-table }}
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="sg-journal">
+    <h2 id="sg-journal">Journal list</h2>
+    <div class="spec__body">
+      <ol class="post-list">
+        <li class="post-list__item">
+          <p class="post-list__date"><time datetime="2026-10-12">12 October 2026</time></p>
+          <h3 class="post-list__title"><a href="/journal/">An example entry title</a></h3>
+          <p class="post-list__summary">One line about the entry.</p>
+        </li>
+      </ol>
+      <dl class="post__meta">
+        <div><dt>Published</dt><dd>12 October 2026</dd></div>
+        <div><dt>Category</dt><dd><a href="/journal/apprentice-log/">Apprentice log</a></dd></div>
+        <div><dt>Written during</dt><dd>Looking for an electrical apprenticeship</dd></div>
+        <div><dt>Reading time</dt><dd>4 minutes</dd></div>
+      </dl>
+    </div>
+  </section>
+</div>

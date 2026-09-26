@@ -1,0 +1,7 @@
+<dl class="status-block">
+  {{#if milestones.current}}<div><dt>Now</dt><dd>{{ milestones.current.title }}</dd></div>
+  {{#if milestones.current.learning}}<div><dt>Learning</dt><dd>{{ milestones.current.learning }}</dd></div>{{/if}}{{/if}}
+  {{#if milestones.next}}<div><dt>Next</dt><dd>{{ milestones.next.title }}</dd></div>{{/if}}
+  <div><dt>Target</dt><dd>Planned to open in {{ site.launchYear }}, once licensed</dd></div>
+  <div><dt>Last updated</dt><dd><time datetime="{{ milestones.latest.date }}">{{ milestones.latest.dateLabel }}</time></dd></div>
+</dl>

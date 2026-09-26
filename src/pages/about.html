@@ -1,0 +1,64 @@
+---
+title: About
+description: Jamil Flores is building Salt and Light Electrical in public. The story so far, and where the name comes from.
+schema: person
+---
+<div class="wrap page">
+  <h1>About</h1>
+  <p class="lede">I'm Jamil Flores. I'm looking for an electrical apprenticeship in Western Sydney, and I'm building Salt and Light Electrical in public while I learn the trade.</p>
+
+  {{#if person.photo}}<figure class="portrait">
+    <img src="{{ person.photo.src }}" alt="{{ person.photo.alt }}" width="480" height="600">
+  </figure>{{/if}}
+
+  <section class="spec" aria-labelledby="story-heading">
+    <h2 id="story-heading">From IT to the trade</h2>
+    <div class="spec__body">
+      <p>I spent about eight years in IT operations and application support, keeping the systems that businesses rely on running. It taught me to write down what I did and why, and to stay calm when something breaks at the worst possible moment.</p>
+      <p>I wanted to work with my hands on things people can see and depend on, and one day to run a business of my own. The electrical trade offers both.</p>
+      <p>In early 2026 I finished a Certificate II in Electrotechnology, the course that prepares people for an electrical apprenticeship. Now I'm looking for an apprenticeship, and I'm bringing those IT habits with me.</p>
+    </div>
+  </section>
+
+  <section class="spec" id="why-the-name" aria-labelledby="name-heading">
+    <h2 id="name-heading">Why the name</h2>
+    <div class="spec__body">
+      <p>The name comes from Matthew 5:13-16, where Jesus calls his followers the salt of the earth and the light of the world.</p>
+      <p>Salt keeps things from going bad. Light shows things as they really are. For an electrician, that means work that lasts and honesty about what's behind the wall.</p>
+      <p>My faith matters to me, and it's why the business has this name. You don't need to share it to follow along. Everyone is welcome here.</p>
+    </div>
+  </section>
+
+  <section class="spec" aria-labelledby="credentials-heading">
+    <h2 id="credentials-heading">Credentials so far</h2>
+    <div class="spec__body">
+      {{#if credentials.shown}}
+      <ul class="credentials">
+        {{#each credentials.shown}}<li><strong>{{ title }}</strong>, {{#if inProgress}}in progress{{else}}completed{{/if}}{{#if when}} {{ when }}{{/if}}</li>
+        {{/each}}
+      </ul>
+      {{else}}
+      <p>Credentials will appear here as they're confirmed.</p>
+      {{/if}}
+      <p>I'm not a licensed electrician and I don't hold an electrical contractor licence. Both are on the <a href="/road-to-launch/">road to launch</a>.</p>
+    </div>
+  </section>
+
+  {{#if features.aboutCommunity}}
+  <section class="spec" aria-labelledby="community-heading">
+    <h2 id="community-heading">Community</h2>
+    <div class="spec__body">
+      <p>I volunteer at GracePoint Presbyterian Church in Lidcombe. It keeps me connected to my community, and it's a steady reminder that good work is really about the people it serves.</p>
+    </div>
+  </section>
+  {{/if}}
+
+  {{#if features.aboutCommunication}}
+  <section class="spec" aria-labelledby="communication-heading">
+    <h2 id="communication-heading">How I communicate</h2>
+    <div class="spec__body">
+      <p>Working as a therapy assistant taught me to listen before I explain, and to check I've been understood. It's how I want to talk to everyone on a job, from the site manager to the newest apprentice.</p>
+    </div>
+  </section>
+  {{/if}}
+</div>
