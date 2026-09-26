@@ -86,6 +86,16 @@ Until an endpoint is set, the site shows your email address if `person.email` is
 - **Search engines:** after going to prelaunch, verify the site in Google Search Console and Bing Webmaster Tools. Put their verification codes in `analytics.googleSiteVerification` and `analytics.bingSiteVerification`.
 - **Locking quiet mode:** if you'd rather only invited people see the site while it's quiet, Cloudflare Access can put a login in front of it.
 
+## Cloudflare's automatic analytics
+
+When a domain runs through Cloudflare, Cloudflare switches on Web Analytics by default and adds its own script to every page. This site's security policy blocks that script, so nothing is collected, but the blocked script shows as an error in the browser console and costs points on Lighthouse's best practices score. The privacy page says there's no analytics, so turn it off:
+
+1. In the Cloudflare dashboard, open the **Web Analytics** page (https://dash.cloudflare.com/?to=/:account/web-analytics).
+2. Find `saltandlightelectrical.com` and select **Manage site**.
+3. Change the automatic setup to **Disable** and save.
+
+If you ever want analytics, use the setup in step 8 instead, so the privacy page and the security policy are updated to match.
+
 ## When a build fails
 
 Open the project in **Workers & Pages** and look at the latest build's log. The check prints each failure (lines starting `[custom build]`) with the rule it broke, the page and what to change. Fix it, commit, and Cloudflare tries again. Running `node tools/build.mjs && node tools/check.mjs` on your computer shows the same thing before you push.

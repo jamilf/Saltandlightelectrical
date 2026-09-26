@@ -2,6 +2,12 @@
 
 The site has no `[[placeholders]]` left, so it's ready to deploy in quiet mode. What's below is what Jamil needs to supply or check before switching to prelaunch. The check lists anything that blocks prelaunch.
 
+## In Cloudflare
+
+- [ ] Turn off Web Analytics' automatic setup for saltandlightelectrical.com (see "Cloudflare's automatic analytics" in `DEPLOY.md`). Cloudflare adds its script by default; the site blocks it, which shows up as a browser console error.
+- [ ] Add `www.saltandlightelectrical.com` as a custom domain. It has no DNS record yet, so it doesn't load.
+- [ ] Turn off the `workers.dev` address, so the site has one address.
+
 ## Settings in `site.config.json`
 
 - [x] `site.url`: https://saltandlightelectrical.com
@@ -28,7 +34,7 @@ These were drafted for you. Some state things about you that came from the brief
 - [ ] **Check** S3 learning line: "How apprenticeships work in NSW, and what employers look for in a first-year apprentice".
 - [ ] **Check** S3 note: "Finding the right employer matters more than finding the first one."
 - [ ] **Check** timings: S4 "About four years", S5 "After the apprenticeship", S6 "Until opening", S7 "Before opening". Swap in years once you know them.
-- [ ] **Check** S5 and S7 explanations of the qualified supervisor certificate and contractor licence against the NSW pages listed in `LAUNCH.md`.
+- [x] S5 and S7 explanations checked on 26 September 2026 against the NSW pages listed in `LAUNCH.md`. They match.
 
 ### About
 - [ ] **Check** the IT paragraph: "keeping the systems that businesses rely on running. It taught me to write down what I did and why, and to stay calm when something breaks at the worst possible moment."
