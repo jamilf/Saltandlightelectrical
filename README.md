@@ -43,6 +43,8 @@ The body is Markdown: a blank line between paragraphs, `## ` for a heading, `- `
 
 Posts in How it works get the safety note automatically. A post with photos must say `photos: own` or `photos: employer-approved`, and the check fails on photos that carry GPS location data.
 
+Each post links to the stage it was written in, and that stage's note on the road to launch lists its three newest posts. A category page stays out of search results until its first post.
+
 ## Updating the road to launch
 
 Everything on the road to launch comes from `content/milestones.json`: the diagram, the stage notes, the status block on the home page, and the revision letter and date in the footer.

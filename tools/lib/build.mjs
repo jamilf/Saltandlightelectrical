@@ -43,6 +43,12 @@ export function build(options = {}) {
     notices: { ...config.notices, status: statusNoticeText(config) },
     milestones: {
       ...milestones,
+      // Each stage lists the journal entries written during it, newest first, so the plan and
+      // the record link to each other.
+      stages: milestones.stages.map((stage) => {
+        const written = posts.filter((post) => post.stage?.id === stage.id);
+        return { ...stage, entries: written.slice(0, 3), entriesMore: Math.max(0, written.length - 3) };
+      }),
       latest,
       revisions: milestones.revisions.map((revision) => ({ ...revision, dateLabel: formatDate(revision.date) })),
     },
@@ -119,7 +125,9 @@ export function build(options = {}) {
     ...config.journal.categories.map((category) => {
       const inCategory = posts.filter((post) => post.category.slug === category.slug);
       return {
-        page: { kind: 'journal', path: `/journal/${category.slug}/`, title: `${category.name} | Journal`, description: category.description, lastmod: inCategory[0]?.date },
+        // An empty category is a dead end in search results, so it stays out of them (and the
+        // sitemap) until its first entry.
+        page: { kind: 'journal', path: `/journal/${category.slug}/`, title: `${category.name} | Journal`, description: category.description, lastmod: inCategory[0]?.date, noindex: inCategory.length === 0 },
         listing: listing(category.name, category.description, inCategory, category.slug),
       };
     }),
@@ -153,7 +161,7 @@ export function build(options = {}) {
   writeFile(join(outDir, 'robots.txt'), robotsTxt(config));
   if (config.mode !== 'quiet') writeFile(join(outDir, 'sitemap.xml'), sitemapXml(written, config));
   writeFile(join(outDir, 'rss.xml'), rssXml(posts, config, posts[0]?.date ?? latest.date));
-  writeFile(join(outDir, 'llms.txt'), llmsTxt(config, milestones));
+  writeFile(join(outDir, 'llms.txt'), llmsTxt(config, milestones, posts));
   writeFile(join(outDir, '_headers'), headersFile(config));
 
   const manifest = {

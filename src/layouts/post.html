@@ -4,7 +4,7 @@
     <dl class="post__meta">
       <div><dt>Published</dt><dd><time datetime="{{ post.date }}">{{ post.dateLabel }}</time></dd></div>
       <div><dt>Category</dt><dd><a href="{{ post.categoryUrl }}">{{ post.category.name }}</a></dd></div>
-      <div><dt>Written during</dt><dd>{{ post.stage.title }}</dd></div>
+      <div><dt>Written during</dt><dd><a href="/road-to-launch/#stage-{{ post.stage.id }}">{{ post.stage.title }}</a></dd></div>
       <div><dt>Reading time</dt><dd>{{ post.readingLabel }}</dd></div>
     </dl>
   </header>
