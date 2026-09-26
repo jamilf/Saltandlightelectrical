@@ -47,7 +47,7 @@ Only three elements may carry `data-compliance="allow"`: the status notice, the 
 - Buttons say exactly what happens. Error messages say what went wrong and how to fix it, without apologising.
 - The action to subscribe is always called "Follow the build", word for word.
 - Describe the future business as commercial and technical electrical work, and nothing narrower. The About story uses trade-first framing.
-- The name comes from Matthew 5:13-16. Mentions of faith stay sincere, brief and welcoming to people who don't share it.
+- The name comes from Matthew 5:13-16. Mentions of faith stay sincere and welcoming to people who don't share it. The fuller version lives on the About page ("Why the name" and "Faith and work", expanded at Jamil's request). Everywhere else, keep it brief.
 - Never invent experiences, quotes, numbers, dates or credentials. Where Jamil's input is needed, write a placeholder like `[[JAMIL: one sentence on ...]]` and add it to `TODO.md`.
 - If a local `private.check.json` exists, the check fails on the words it lists. Never commit that file, and never copy its words anywhere.
 
