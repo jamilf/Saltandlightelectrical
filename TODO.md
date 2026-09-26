@@ -4,7 +4,7 @@ The site has no `[[placeholders]]` left, so it's ready to deploy in quiet mode. 
 
 ## Settings in `site.config.json`
 
-- [ ] `site.url`: the site's address, once it's deployed (see `DEPLOY.md`). Needed for prelaunch.
+- [x] `site.url`: https://saltandlightelectrical.com
 - [ ] `person.email`: a contact address, or set up the forms below. Prelaunch needs one or the other.
 - [ ] `person.linkedin`: your LinkedIn address, if you want it linked from the home page, footer and structured data.
 - [ ] `forms.newsletter.endpoint` and `provider`: the newsletter service, once chosen.
