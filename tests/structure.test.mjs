@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { after, test } from 'node:test';
 import { findAll, parseHtml, textOf } from '../tools/lib/html.mjs';
@@ -32,6 +32,9 @@ test('the road to launch and the journal link to each other through the stage an
 
 test('a stage shows its three newest entries and counts the rest', () => {
   const site = fresh();
+  // Start from an empty journal, so the count doesn't depend on the real posts.
+  const journal = join(site.root, 'content', 'journal');
+  for (const file of readdirSync(journal).filter((name) => name.endsWith('.md') && !name.startsWith('_'))) rmSync(join(journal, file));
   for (const day of ['01', '02', '03', '04', '05']) {
     site.write(`content/journal/2026-10-${day}-entry-${day}.md`, post({ title: `Entry ${day}`, date: `2026-10-${day}`, extra: 'stage: finding-apprenticeship\n' }));
   }
@@ -39,7 +42,7 @@ test('a stage shows its three newest entries and counts the rest', () => {
   const note = findAll(parseHtml(read(site, 'road-to-launch/index.html')), (n) => n.attrs.id === 'stage-finding-apprenticeship')[0];
   const titles = findAll(note, (n) => n.name === 'a' && n.attrs.href.startsWith('/journal/entry-')).map((a) => textOf(a));
   assert.deepEqual(titles, ['Entry 05', 'Entry 04', 'Entry 03']);
-  assert.match(textOf(note), /And 3 more in the journal\./);
+  assert.match(textOf(note), /And 2 more in the journal\./);
 });
 
 test('empty journal categories stay out of search results and the sitemap until their first entry', () => {
@@ -76,5 +79,6 @@ test('llms.txt lists the journal entries alongside the main pages', () => {
   const site = fresh();
   site.build();
   const llms = read(site, 'llms.txt');
-  assert.match(llms, /## Journal\n\n- \[Why I'm building a business six years early\]\(https:\/\/saltandlightelectrical\.com\/journal\/why-im-building-early\/\), 2026-09-26: /);
+  assert.match(llms, /## Journal\n\n- \[/);
+  assert.match(llms, /\n- \[Why I'm building a business six years early\]\(https:\/\/saltandlightelectrical\.com\/journal\/why-im-building-early\/\), 2026-09-26: /);
 });

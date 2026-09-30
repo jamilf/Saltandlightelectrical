@@ -5,7 +5,6 @@ category: how-it-works
 summary: "The simple drawing electricians use to show how power gets from the supply to what it runs, and why the road to launch is drawn as one."
 stage: finding-apprenticeship
 photos: own, licensed           # none, own, employer-approved or licensed, or a list
-draft: true                     # delete this line when it is ready to publish
 ---
 
 The road to launch on this site is drawn as a single-line diagram. It's a real kind of electrical drawing, and the idea behind it is simpler than it looks.
