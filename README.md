@@ -45,6 +45,8 @@ Posts in How it works get the safety note automatically. A post with photos must
 
 An image on a line of its own becomes a figure, and the text in quotes after its address becomes the caption: `![A switchboard](media/board.jpg "Inside a switchboard")`.
 
+The publishing calendar for the year, with the status of each draft, is in `JOURNAL-PLAN.md`.
+
 Each post links to the stage it was written in, and that stage's note on the road to launch lists its three newest posts. A category page stays out of search results until its first post.
 
 ## Updating the road to launch
