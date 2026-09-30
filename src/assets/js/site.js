@@ -1,6 +1,7 @@
-// Salt and Light Electrical: form helpers, plus smooth in-page scrolling. The forms work without
-// this script; it adds clear error messages, quietly drops bot submissions caught by the honeypot,
-// and can send a form without leaving the page when data-ajax="true".
+// Salt and Light Electrical: form helpers, smooth in-page scrolling and drawings that draw as they
+// come into view. The forms work without this script; it adds clear error messages, quietly drops
+// bot submissions caught by the honeypot, and can send a form without leaving the page when
+// data-ajax="true".
 (function () {
   'use strict';
 
@@ -9,6 +10,23 @@
   window.addEventListener('load', function () {
     document.documentElement.classList.add('can-glide');
   });
+
+  // Line drawings further down the page draw themselves as they come into view, once each.
+  // Without this script, or with reduced motion, they're simply there.
+  var drawings = document.querySelectorAll('.art--onview');
+  if (drawings.length && 'IntersectionObserver' in window && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    document.documentElement.classList.add('can-draw');
+    var watcher = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-drawn');
+        watcher.unobserve(entry.target);
+      });
+    }, { threshold: 0.35 });
+    Array.prototype.forEach.call(drawings, function (drawing) {
+      watcher.observe(drawing);
+    });
+  }
 
   function fieldError(input) {
     var value = input.value.trim();

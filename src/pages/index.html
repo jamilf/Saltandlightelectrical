@@ -7,29 +7,37 @@ forms: true
 ---
 <div class="wrap page">
   <section class="hero" aria-labelledby="hero-heading">
-    <h1 id="hero-heading">Salt and Light Electrical</h1>
-    <p class="lede">I'm Jamil, and I'm looking for an electrical apprenticeship in Western Sydney. This site is where I'm building Salt and Light Electrical in public, one dated step at a time, from apprentice to licensed contractor.</p>
-    <p class="hero__target">Planned to open in {{ site.launchYear }}, once licensed.</p>
-    <p class="button-row">
-      <a class="button button--primary" href="#follow-the-build">Follow the build</a>
-      <a class="button button--secondary" href="/journal/">Read the journal</a>
-    </p>
-    <h2 class="visually-hidden">Road to launch</h2>
-    {{{ diagram.compact }}}
+    <div class="hero__text">
+      <h1 id="hero-heading">Building Salt and Light Electrical in public</h1>
+      <p class="lede">I'm Jamil, and I'm looking for an electrical apprenticeship in Western Sydney. Every step from apprentice to licensed contractor gets a date and a place on this site, so there's a record anyone can check.</p>
+      <p class="hero__target">Planned to open in {{ site.launchYear }}, once licensed.</p>
+      <p class="button-row">
+        <a class="button button--primary" href="#follow-the-build">Follow the build</a>
+        <a class="button button--secondary" href="/journal/">Read the journal</a>
+      </p>
+    </div>
+    <figure class="hero__art">
+      <div class="sheet">{{{ art.hero }}}</div>
+      <figcaption>{{#if mode.live}}The lamp is on. Salt and Light Electrical is open.{{else}}A lamp on its stand, with the power on its way. It stays off until the business opens.{{/if}}</figcaption>
+    </figure>
   </section>
 
-  <section class="spec" aria-labelledby="status-heading">
+  <section class="spec spec--wide" aria-labelledby="status-heading">
     <h2 id="status-heading">Where things are at</h2>
     <div class="spec__body">
+      {{{ diagram.compact }}}
       {{> status-block }}
     </div>
   </section>
 
   <section class="spec" aria-labelledby="name-heading">
     <h2 id="name-heading">Why the name</h2>
-    <div class="spec__body">
-      <p>The name comes from Matthew 5:13-16. Salt keeps things from going bad, and light shows things as they really are. For an electrician, that means work that lasts and honesty about what's behind the wall.</p>
-      <p><a href="/about/#why-the-name">More about the name, my faith and why I'm changing careers</a></p>
+    <div class="spec__body spec__body--art">
+      <div>
+        <p>The name comes from Matthew 5:13-16. Salt keeps things from going bad, and light shows things as they really are. For an electrician, that means work that lasts and honesty about what's behind the wall.</p>
+        <p><a href="/about/#why-the-name">More about the name, my faith and why I'm changing careers</a></p>
+      </div>
+      <div class="art-frame">{{{ art.name }}}</div>
     </div>
   </section>
 
@@ -37,7 +45,19 @@ forms: true
     <h2 id="building-heading">What I'm building</h2>
     <div class="spec__body">
       <p>Salt and Light Electrical is planned to open in {{ site.launchYear }}, once I hold an electrical contractor licence. It will focus on commercial and technical electrical work.</p>
-      <p>It rests on two promises. Do the work once, and do it properly. Then leave clear records of what was done and why, so whoever opens the switchboard next isn't left guessing.</p>
+      <p>It rests on two promises.</p>
+      <div class="promises">
+        <div class="promise">
+          {{{ art.work }}}
+          <h3>Do the work once, and do it properly</h3>
+          <p>Tidy, safe work that nobody has to come back and fix.</p>
+        </div>
+        <div class="promise">
+          {{{ art.records }}}
+          <h3>Leave clear records</h3>
+          <p>A record of what was done and why, so whoever opens the switchboard next isn't left guessing.</p>
+        </div>
+      </div>
       <p>Until then, I'm not offering electrical work of any kind. This site is the record of how I get there.</p>
     </div>
   </section>

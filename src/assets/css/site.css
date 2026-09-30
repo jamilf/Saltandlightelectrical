@@ -615,13 +615,168 @@ img {
   }
 }
 
-/* ---------- Home hero ---------- */
+/* ---------- Home hero: the words, and a drawing on its own sheet ---------- */
+.hero {
+  display: grid;
+  gap: var(--space-7);
+  align-items: start;
+  padding-bottom: var(--space-7);
+}
+
 .hero__target {
   color: var(--ink-soft);
 }
 
 .hero .button-row {
-  margin-bottom: var(--space-6);
+  margin-bottom: 0;
+}
+
+.hero__art {
+  max-width: 34rem;
+  margin: 0;
+}
+
+.hero__art figcaption {
+  margin-top: var(--space-3);
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
+@media (min-width: 60em) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    padding-top: var(--space-4);
+  }
+
+  .hero__art {
+    justify-self: end;
+    width: 100%;
+  }
+}
+
+/* A drawing sheet: paper, raised a little off the page. */
+.sheet {
+  padding: var(--space-2);
+  background: var(--paper);
+  border-radius: var(--radius-sheet);
+  box-shadow: var(--shadow-raised);
+}
+
+/* ---------- Line drawings (tools/lib/art.mjs) ---------- */
+.art {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.art .ln {
+  fill: none;
+  stroke: var(--blueprint);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.art .ln--thin {
+  stroke-width: 1.25;
+}
+
+.art .ln--soft {
+  stroke: var(--field);
+  stroke-width: 1.25;
+}
+
+.art .ln--dead {
+  stroke: var(--wire);
+  stroke-width: 2.5;
+}
+
+.art .ln--live {
+  stroke-width: 3;
+}
+
+.art .ln--guide {
+  stroke: var(--wire);
+  stroke-width: 1;
+  stroke-dasharray: 14 4 3 4;
+}
+
+.art .ln--dim {
+  stroke: var(--field);
+  stroke-width: 1;
+}
+
+.art .ln--frame {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+
+.art__grid {
+  fill: var(--rule);
+}
+
+.art .node {
+  fill: var(--paper);
+  stroke: var(--blueprint);
+  stroke-width: 1.75;
+}
+
+.art .node--done {
+  fill: var(--blueprint);
+}
+
+.art .node--now {
+  fill: var(--filament);
+}
+
+.art .node--planned {
+  stroke: var(--wire);
+}
+
+.art .lit {
+  fill: var(--filament);
+}
+
+.art .p {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.art-frame {
+  max-width: 22rem;
+}
+
+/* Two promises side by side, each with its drawing. */
+.promises {
+  display: grid;
+  gap: var(--space-6);
+  margin-block: var(--space-5) var(--space-6);
+}
+
+@media (min-width: 40em) {
+  .promises {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.promise {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+.promise .art {
+  max-width: 18rem;
+  margin-bottom: var(--space-4);
+}
+
+.promise h3 {
+  margin-bottom: var(--space-2);
+}
+
+.promise p {
+  margin: 0;
 }
 
 /* ---------- Specification layout: a hairline, the heading on the left, the text beside it ---------- */
@@ -648,6 +803,35 @@ img {
 
 .spec__body > :last-child {
   margin-bottom: 0;
+}
+
+/* A section whose body needs the full width, like the road to launch: heading above, not beside. */
+@media (min-width: 60em) {
+  .spec--wide {
+    display: block;
+  }
+
+  .spec--wide > h2 {
+    margin-bottom: var(--space-5);
+  }
+}
+
+.spec--wide .sld {
+  margin-top: 0;
+}
+
+/* Text with a drawing beside it on wide screens, below it on narrow ones. */
+.spec__body--art {
+  display: grid;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (min-width: 60em) {
+  .spec__body--art {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 17rem);
+    gap: var(--space-6);
+  }
 }
 
 /* ---------- Notes: safety note and contact disclaimer ---------- */
@@ -1391,6 +1575,29 @@ img {
   fill: var(--blueprint);
 }
 
+.sg-art {
+  display: grid;
+  gap: var(--space-6);
+  margin-block: var(--space-5) var(--space-7);
+}
+
+@media (min-width: 48em) {
+  .sg-art {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+  }
+}
+
+.sg-art figure {
+  margin: 0;
+}
+
+.sg-art figcaption {
+  margin-top: var(--space-3);
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
 .sg-h1,
 .sg-h2 {
   margin-bottom: var(--space-3);
@@ -1491,5 +1698,85 @@ img {
   .field__error:not([hidden]),
   .form-message {
     animation: message-in 200ms ease-out;
+  }
+}
+
+/* The home page drawings draw themselves in. Strokes carry pathLength="1", so one dash animation
+   fits every shape. The hero draws on load: the lamp, then the cable, a node for each stage, the
+   power along the cable, and a glow at the current stage. The others draw once as they scroll into
+   view: site.js adds can-draw to the page and is-drawn to each drawing. Without the script they
+   are simply there. */
+@keyframes art-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+@keyframes art-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes art-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .art .d {
+    stroke-dasharray: 1;
+  }
+
+  .art--onload .d {
+    animation: art-draw 700ms ease-out var(--dl, 0ms) both;
+  }
+
+  .art--onload .f {
+    animation: art-fade 500ms ease-out var(--dl, 0ms) both;
+  }
+
+  .art--onload .p {
+    animation: art-pop 300ms ease-out var(--dl, 0ms) both;
+  }
+
+  .art--onload .ln--dead {
+    animation-duration: 900ms;
+  }
+
+  .art--onload .ln--live {
+    animation-duration: 700ms;
+    animation-timing-function: ease-in-out;
+  }
+
+  .art--onload .node--now {
+    animation:
+      art-pop 300ms ease-out var(--dl, 0ms) both,
+      contact-glow 1.2s ease-in-out 2.6s 2;
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .can-draw .art--onview:not(.is-drawn) .d {
+    stroke-dashoffset: 1;
+  }
+
+  .can-draw .art--onview:not(.is-drawn) .f,
+  .can-draw .art--onview:not(.is-drawn) .p {
+    opacity: 0;
+  }
+
+  .can-draw .art--onview.is-drawn .d {
+    animation: art-draw 600ms ease-out var(--dl, 0ms) both;
+  }
+
+  .can-draw .art--onview.is-drawn .f {
+    animation: art-fade 500ms ease-out var(--dl, 0ms) both;
+  }
+
+  .can-draw .art--onview.is-drawn .p {
+    animation: art-pop 300ms ease-out var(--dl, 0ms) both;
   }
 }

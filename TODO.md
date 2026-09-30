@@ -24,9 +24,10 @@ The site has no `[[placeholders]]` left, so it's ready to deploy in quiet mode. 
 These were drafted for you. Some state things about you that came from the brief or were reasonable guesses, and those are marked **check**.
 
 ### Home
-- [ ] Hero line: "I'm Jamil, and I'm looking for an electrical apprenticeship in Western Sydney. This site is where I'm building Salt and Light Electrical in public, one dated step at a time, from apprentice to licensed contractor."
+- [ ] Hero heading and line: "Building Salt and Light Electrical in public", then "I'm Jamil, and I'm looking for an electrical apprenticeship in Western Sydney. Every step from apprentice to licensed contractor gets a date and a place on this site, so there's a record anyone can check."
+- [ ] The caption under the hero drawing: "A lamp on its stand, with the power on its way. It stays off until the business opens."
 - [ ] Why the name.
-- [ ] What I'm building, including "It rests on two promises" and "Until then, I'm not offering electrical work of any kind."
+- [ ] What I'm building, including the two promises and "Until then, I'm not offering electrical work of any kind." The line under the first promise was drafted for you: "Tidy, safe work that nobody has to come back and fix."
 
 ### Road to launch
 - [ ] The introduction explaining the drawing.
