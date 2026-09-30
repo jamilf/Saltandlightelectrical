@@ -260,3 +260,17 @@ test('words listed in the untracked private.check.json fail wherever they appear
   assert.match(text, /\[private\] plant\/index\.html: A word from private\.check\.json appears in page text/);
   assert.doesNotMatch(text, /Secret Project/);
 });
+
+test('licensed photos need a photo credits section, and a post can list more than one source', () => {
+  const site = fresh();
+  site.write('content/journal/media/board.png', 'image bytes');
+  const body = '![A labelled switchboard](media/board.png "A switchboard")';
+  site.write('content/journal/2026-10-01-board.md', post({ body, extra: 'photos: own, licensed\n' }));
+  assert.match(messages(site.check()), /\[photos\] .*uses licensed photos but has no "Photo credits" section/);
+
+  site.write('content/journal/2026-10-01-board.md', post({ body: `${body}\n\n## Photo credits\n\n- Switchboard by Someone, CC BY 4.0.`, extra: 'photos: own, licensed\n' }));
+  assert.doesNotMatch(messages(site.check()), /\[photos\]|rule 8/);
+
+  site.write('content/journal/2026-10-01-board.md', post({ body, extra: 'photos: none, own\n' }));
+  assert.throws(() => site.build(), /photos must be one of none, own, employer-approved, licensed, or a list/);
+});

@@ -117,3 +117,34 @@ export function wordCount(text) {
   const words = normalizeText(text).match(/[A-Za-z0-9'’-]+/g);
   return words ? words.length : 0;
 }
+
+/**
+ * Width and height of a JPEG, PNG, GIF or SVG, so pages can reserve the space before it loads.
+ * @returns {{ width: number, height: number } | null}
+ */
+export function imageSize(path) {
+  if (!existsSync(path)) return null;
+  const buffer = readFileSync(path);
+  const ext = path.toLowerCase().split('.').pop();
+  if (ext === 'png' && buffer.length >= 24) return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+  if (ext === 'gif' && buffer.length >= 10) return { width: buffer.readUInt16LE(6), height: buffer.readUInt16LE(8) };
+  if (ext === 'svg') {
+    const tag = buffer.toString('utf8').match(/<svg\b[^>]*>/)?.[0] ?? '';
+    const attr = (name) => Number(tag.match(new RegExp(`\\s${name}="([\\d.]+)"`))?.[1]);
+    const box = tag.match(/viewBox="[\d.-]+[\s,]+[\d.-]+[\s,]+([\d.]+)[\s,]+([\d.]+)"/);
+    const width = attr('width') || Number(box?.[1]);
+    const height = attr('height') || Number(box?.[2]);
+    return width && height ? { width: Math.round(width), height: Math.round(height) } : null;
+  }
+  if (ext === 'jpg' || ext === 'jpeg') {
+    let offset = 2;
+    while (offset + 9 < buffer.length && buffer[offset] === 0xff) {
+      const marker = buffer[offset + 1];
+      if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+        return { width: buffer.readUInt16BE(offset + 7), height: buffer.readUInt16BE(offset + 5) };
+      }
+      offset += 2 + buffer.readUInt16BE(offset + 2);
+    }
+  }
+  return null;
+}

@@ -14,7 +14,7 @@ const ESCAPABLE = '\\`*_{}[]()#+-.!>|~"\'';
 
 /**
  * @param {string} markdown
- * @param {{ topHeadingLevel?: number, reservedIds?: string[], resolveUrl?: (url: string, kind: 'link' | 'image') => string }} [options]
+ * @param {{ topHeadingLevel?: number, reservedIds?: string[], resolveUrl?: (url: string, kind: 'link' | 'image') => string, imageSize?: (src: string) => ({ width: number, height: number } | null) }} [options]
  */
 export function markdownToHtml(markdown, options = {}) {
   const lines = String(markdown)
@@ -28,6 +28,7 @@ export function markdownToHtml(markdown, options = {}) {
     ids: new Set(options.reservedIds ?? []),
     headingShift: 0,
     resolveUrl: options.resolveUrl ?? ((url) => url),
+    imageSize: options.imageSize ?? (() => null),
   };
 
   if (options.topHeadingLevel) {
@@ -94,7 +95,7 @@ function parseBlocks(lines, state) {
       paragraph.push(lines[i]);
       i += 1;
     }
-    out.push(`<p>${parseInline(joinLines(paragraph), state)}</p>`);
+    out.push(renderParagraph(parseInline(joinLines(paragraph), state)));
   }
   return out;
 }
@@ -350,7 +351,18 @@ function renderImage(link, state) {
   const src = state.resolveUrl(url, 'image');
   state.images.push({ src, alt });
   const title = link.title ? ` title="${escapeHtml(link.title)}"` : '';
-  return `<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}"${title} loading="lazy" decoding="async">`;
+  const size = state.imageSize(src);
+  const dimensions = size ? ` width="${size.width}" height="${size.height}"` : '';
+  return `<img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}"${title}${dimensions} loading="lazy" decoding="async">`;
+}
+
+// An image on its own line becomes a figure, and its title (the "text" after the address) becomes
+// the caption: ![A switchboard](media/board.jpg "Inside a switchboard").
+function renderParagraph(html) {
+  if (!/^<img [^>]*>$/.test(html)) return `<p>${html}</p>`;
+  const caption = html.match(/ title="([^"]*)"/)?.[1];
+  const image = html.replace(/ title="[^"]*"/, '');
+  return `<figure class="post__figure">${image}${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`;
 }
 
 function parseEmphasis(text, i, state) {

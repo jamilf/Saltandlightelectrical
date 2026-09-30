@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="240" viewBox="0 0 640 240">
+  <rect width="640" height="240" rx="2" fill="#0a2b5e"/>
+  <rect x="8.5" y="8.5" width="623" height="223" fill="none" stroke="#9dc1ee" stroke-opacity="0.4"/>
+  <g font-family="'Courier New', Courier, 'Liberation Mono', monospace" font-size="15" fill="#9dc1ee">
+    <text x="40" y="52">In the cable</text>
+    <text x="384" y="52">On the drawing</text>
+    <text x="384" y="181">One line, and three short</text>
+    <text x="384" y="200">strokes for three wires</text>
+  </g>
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none">
+    <path d="M40 96H216M40 136H216M40 176H216"/>
+    <path d="M384 136H600"/>
+    <path d="M482 148L494 124M494 148L506 124M506 148L518 124"/>
+  </g>
+  <g font-family="'Courier New', Courier, 'Liberation Mono', monospace" font-size="15" font-weight="700" fill="#ffffff">
+    <text x="228" y="101">Active</text>
+    <text x="228" y="141">Neutral</text>
+    <text x="228" y="181">Earth</text>
+  </g>
+  <path d="M318 136H354M344 128L354 136L344 144" fill="none" stroke="#9dc1ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

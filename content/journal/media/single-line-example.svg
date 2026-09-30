@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="540" viewBox="0 0 640 540">
+  <rect width="640" height="540" rx="2" fill="#0a2b5e"/>
+  <rect x="8.5" y="8.5" width="623" height="523" fill="none" stroke="#9dc1ee" stroke-opacity="0.4"/>
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M200 54V104M190 104H210M200 150L184 110M200 150V204"/>
+    <path d="M194 198L206 210M206 198L194 210M200 250L184 208M200 250V310"/>
+    <ellipse cx="200" cy="276" rx="14" ry="6"/>
+    <path d="M140 310H500" stroke-width="4"/>
+    <path d="M200 310V350M194 344L206 356M206 344L194 356M200 396L184 354M200 396V448"/>
+    <circle cx="200" cy="466" r="18"/>
+    <path d="M187 453L213 479M213 453L187 479"/>
+    <path d="M420 310V350M414 344L426 356M426 344L414 356M420 396L404 354M420 396V448M404 448H436M406 448A14 14 0 0 0 434 448"/>
+  </g>
+  <circle cx="200" cy="48" r="6" fill="#ffffff"/>
+  <g font-family="'Courier New', Courier, 'Liberation Mono', monospace" font-size="15" font-weight="700" fill="#ffffff">
+    <text x="226" y="53">Supply</text>
+    <text x="226" y="124">Main switch</text>
+    <text x="226" y="224">Safety switch (RCD)</text>
+    <text x="222" y="372">Circuit breaker</text>
+    <text x="442" y="372">Circuit breaker</text>
+    <text x="232" y="471">C1 Lights</text>
+    <text x="452" y="459">C2 Power points</text>
+  </g>
+  <g font-family="'Courier New', Courier, 'Liberation Mono', monospace" font-size="13" fill="#9dc1ee">
+    <text x="226" y="72">Where the power comes in</text>
+    <text x="226" y="143">Turns off everything after it</text>
+    <text x="226" y="243">Turns off if current leaks</text>
+    <text x="222" y="391">Protects the cable</text>
+    <text x="442" y="391">Protects the cable</text>
+  </g>
+</svg>

@@ -56,7 +56,7 @@ These were drafted for you. Some state things about you that came from the brief
 ### Journal
 - [ ] **Check** the first entry, "Why I'm building a business six years early". It's published. Set `draft: true` to take it down while you rewrite it.
 - [ ] The four category descriptions in `site.config.json`.
-- [ ] Read aloud the draft How it works entry, "How to read a single-line diagram" (`content/journal/2026-09-30-how-to-read-a-single-line-diagram.md`). It sticks to general information and doesn't describe anything you've done. Delete its `draft: true` line to publish it.
+- [ ] Read aloud the draft How it works entry, "How to read a single-line diagram" (`content/journal/2026-09-30-how-to-read-a-single-line-diagram.md`). It sticks to general information and doesn't describe anything you've done. It has two diagrams drawn for the site and two openly licensed photos from Wikimedia Commons, credited at the end. Delete its `draft: true` line to publish it.
 - [ ] Your first apprentice log: `content/journal/2026-09-26-first-apprentice-log.md` has the outline, with `[[FIRST_APPRENTICE_LOG_TOPIC]]` as the title. It stays a draft until you write it.
 
 ### Link preview image

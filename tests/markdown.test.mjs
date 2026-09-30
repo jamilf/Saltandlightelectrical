@@ -51,7 +51,7 @@ test('images are collected and relative paths resolved', () => {
   const result = markdownToHtml('![A tidy switchboard](media/board.jpg "Board")', {
     resolveUrl: (url, kind) => (kind === 'image' ? `/journal/${url}` : url),
   });
-  assert.equal(result.html, '<p><img src="/journal/media/board.jpg" alt="A tidy switchboard" title="Board" loading="lazy" decoding="async"></p>');
+  assert.equal(result.html, '<figure class="post__figure"><img src="/journal/media/board.jpg" alt="A tidy switchboard" loading="lazy" decoding="async"><figcaption>Board</figcaption></figure>');
   assert.deepEqual(result.images, [{ src: '/journal/media/board.jpg', alt: 'A tidy switchboard' }]);
 });
 
@@ -80,4 +80,14 @@ test('raw HTML is escaped, never passed through', () => {
 test('backslash escapes and horizontal rules', () => {
   assert.equal(md('\\*not emphasis\\*'), '<p>*not emphasis*</p>');
   assert.equal(md('Above\n\n---\n\nBelow'), '<p>Above</p>\n<hr>\n<p>Below</p>');
+});
+
+test('an image on its own line becomes a figure, with its title as the caption and its size reserved', () => {
+  const size = () => ({ width: 640, height: 240 });
+  assert.equal(
+    md('![Three wires](media/wires.svg "The same three wires, drawn as one line.")', { imageSize: size }),
+    '<figure class="post__figure"><img src="media/wires.svg" alt="Three wires" width="640" height="240" loading="lazy" decoding="async"><figcaption>The same three wires, drawn as one line.</figcaption></figure>',
+  );
+  assert.equal(md('![A board](media/board.jpg)'), '<figure class="post__figure"><img src="media/board.jpg" alt="A board" loading="lazy" decoding="async"></figure>');
+  assert.match(md('Look at ![this](media/x.png) one'), /^<p>Look at <img /);
 });

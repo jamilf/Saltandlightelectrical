@@ -63,7 +63,7 @@ Warm, calm and exact, like a neat switchboard and a well-drawn plan. The road to
 - **Light theme only.** No dark mode.
 - **Motion:** small, and only where it has a job. The road to launch energises on load: the path draws, each contact closes as the power arrives, and the current contact glows twice. The home page drawings draw themselves in: the hero on load, running the power to the current stage, and the rest once as they scroll into view. Pages fade into each other, "Follow the build" glides down the home page, controls ease between colours and form messages settle in. Nothing loops, and none of it runs under reduced motion (`tests/motion.test.mjs` checks the stylesheet). The styleguide lists it all.
 - **Avoid:** cream backgrounds with serif displays and terracotta; dark themes with acid green; gradients, glassmorphism and blobs; identical cards with identical shadows; icon-plus-three-words rows; all-caps labels, eyebrow labels, one highlighted word in a headline, arrows on links, "A · B · C" meta strings; 01/02/03 markers unless the content is a real sequence; lightning bolts, sparks, hard hats, hi-vis clichés and emoji; pop-ups, fake stats, placeholder logos and lorem ipsum.
-- Real photos only. No stock photos and no AI-generated people.
+- Photos are real: Jamil's own, employer-approved, or openly licensed ones that help explain something (declared `licensed`, credited with author, licence and source in a "Photo credits" section). Licensed photos show equipment, never people and never electrical work presented as Jamil's. No AI-generated people.
 - **Line drawings** (`tools/lib/art.mjs`, shown in the styleguide) are the only illustrations: blueprint strokes on a light sheet, in the same hand as the road to launch, with no people and no text. They're decoration (`aria-hidden`), so the words beside them carry the meaning. The hero's lamp stays unlit until live mode.
 
 `/styleguide/` shows every component.
@@ -80,7 +80,7 @@ Warm, calm and exact, like a neat switchboard and a well-drawn plan. The road to
 
 - [ ] Employer's OK for any job-site content.
 - [ ] Nothing identifying: no client names, addresses, house numbers, number plates, faces or confidential work.
-- [ ] Photos declared (`own` or `employer-approved`), and no GPS data in them.
+- [ ] Photos declared (`own`, `employer-approved` or `licensed`, or a list like `own, licensed`), and no GPS data in them. Licensed photos are credited in a "Photo credits" section.
 - [ ] How it works posts have the safety note (added automatically).
 - [ ] No DIY instructions.
 - [ ] Jamil has read it aloud.
