@@ -160,12 +160,36 @@ sitemap: false
     </div>
   </section>
 
+  <section aria-labelledby="sg-art">
+    <h2 id="sg-art">Line drawings</h2>
+    <p>Drawn in the same hand as the road to launch: blueprint strokes on a light sheet, with no people and no text. They're decoration, so the words around them carry the meaning. The hero drawing comes from the milestones, so the power always stops at the current stage.</p>
+    <div class="sg-art">
+      <figure class="hero__art">
+        <div class="sheet">{{{ art.hero }}}</div>
+        <figcaption>Home hero: a lamp on its stand, wired back to a socket, with a node for each stage.</figcaption>
+      </figure>
+      <figure>
+        <div class="art-frame">{{{ art.name }}}</div>
+        <figcaption>Why the name: a salt crystal's lattice, and a lamp on its stand.</figcaption>
+      </figure>
+      <figure>
+        <div class="art-frame">{{{ art.work }}}</div>
+        <figcaption>Do the work once, and do it properly: a conduit run, saddled at even spacings.</figcaption>
+      </figure>
+      <figure>
+        <div class="art-frame">{{{ art.records }}}</div>
+        <figcaption>Leave clear records: a labelled switchboard and its schedule.</figcaption>
+      </figure>
+    </div>
+  </section>
+
   <section class="spec" aria-labelledby="sg-motion">
     <h2 id="sg-motion">Motion</h2>
     <div class="spec__body">
       <p>Motion is small and always has a job. None of it runs when a device asks for reduced motion.</p>
       <ul>
         <li>Road to launch: the power draws along the wire, and each contact closes as it arrives. The current contact swings part way, turns amber and glows twice. Reload this page to see it on the diagrams above.</li>
+        <li>Home page drawings draw themselves in. The hero draws on load and runs the power to the current stage. The others draw once as they scroll into view.</li>
         <li>Pages fade into each other.</li>
         <li>"Follow the build" glides down the home page instead of jumping.</li>
         <li>Buttons, fields and navigation links ease between colours.</li>

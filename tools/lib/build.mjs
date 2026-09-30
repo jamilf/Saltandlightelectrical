@@ -5,6 +5,7 @@ import { loadConfig, statusNoticeText } from './config.mjs';
 import { headersFile, llmsTxt, robotsTxt, rssXml, sitemapXml } from './feeds.mjs';
 import { parseFrontMatter } from './frontmatter.mjs';
 import { loadPosts } from './journal.mjs';
+import { heroArt, nameArt, recordsArt, workArt } from './art.mjs';
 import { renderDiagram } from './diagram.mjs';
 import { loadMilestones } from './milestones.mjs';
 import { jsonLdScript, pageTitle, robotsFor } from './seo.mjs';
@@ -66,6 +67,7 @@ export function build(options = {}) {
     analytics: config.analytics,
     followPath: config.followPath,
     assets,
+    art: { hero: heroArt(milestones, config), name: nameArt(), work: workArt(), records: recordsArt() },
     diagram: {
       full: renderDiagram(milestones, config, { variant: 'full' }),
       compact: renderDiagram(milestones, config, { variant: 'compact', link: true }),
@@ -219,6 +221,7 @@ function assetPaths(root, config) {
     css: versioned('css/site.css'),
     js: versioned('js/site.js'),
     font400: '/assets/fonts/poppins-400.woff2',
+    font600: '/assets/fonts/poppins-600.woff2',
     favicon: existsSync(join(root, 'src', 'static', 'favicon.svg')) ? '/favicon.svg' : null,
     faviconIco: existsSync(join(root, 'src', 'static', 'favicon.ico')) ? '/favicon.ico' : null,
     appleTouchIcon: existsSync(join(root, 'src', 'static', 'apple-touch-icon.png')) ? '/apple-touch-icon.png' : null,
