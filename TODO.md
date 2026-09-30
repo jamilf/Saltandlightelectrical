@@ -57,6 +57,7 @@ These were drafted for you. Some state things about you that came from the brief
 - [ ] **Check** the first entry, "Why I'm building a business six years early". It's published. Set `draft: true` to take it down while you rewrite it.
 - [ ] The four category descriptions in `site.config.json`.
 - [x] Published the How it works entry "How to read a single-line diagram" on 30 September 2026, with two diagrams and two credited photos.
+- [ ] Work through `JOURNAL-PLAN.md`: 20 draft entries planned from October 2026 to September 2027. Fourteen are ready and only need reading aloud. Six are outlines about your own experience, with gaps to fill and room for your own photo.
 - [ ] Your first apprentice log: `content/journal/2026-09-26-first-apprentice-log.md` has the outline, with `[[FIRST_APPRENTICE_LOG_TOPIC]]` as the title. It stays a draft until you write it.
 
 ### Link preview image
