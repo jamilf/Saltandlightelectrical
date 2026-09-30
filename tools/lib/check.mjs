@@ -409,9 +409,18 @@ function checkPosts({ manifest, distDir, report }) {
   for (const post of manifest.posts ?? []) {
     // Rule 8. Every post says where its photos came from.
     if (!post.photos) {
-      report.fail('rule 8', post.file, 'Add "photos: none", "photos: own" or "photos: employer-approved" to the front matter.');
+      report.fail('rule 8', post.file, 'Add "photos: none", "photos: own", "photos: employer-approved" or "photos: licensed" to the front matter.');
     } else if (post.images.length && post.photos === 'none') {
       report.fail('rule 8', post.file, `The post has ${post.images.length} image(s) but says "photos: none". Say whose photos they are.`);
+    }
+    // Someone else's photos, used under a licence, are credited on the page: who took each one,
+    // the licence, and where it came from.
+    if ((post.photoSources ?? []).includes('licensed')) {
+      const page = join(distDir, post.url.replace(/^\//, ''), 'index.html');
+      const html = existsSync(page) ? readFileSync(page, 'utf8') : '';
+      if (!/<h[2-4][^>]*>Photo credits<\/h[2-4]>/.test(html)) {
+        report.fail('photos', post.file, 'This post uses licensed photos but has no "Photo credits" section. Add "## Photo credits" with each photo\'s author, licence and source.');
+      }
     }
     if (!post.stagePinned) {
       report.warn('journal', post.file, 'No "stage:" in the front matter, so "Written during" is worked out from dates. Add it to freeze it.');

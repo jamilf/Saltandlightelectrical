@@ -56,6 +56,7 @@ These were drafted for you. Some state things about you that came from the brief
 ### Journal
 - [ ] **Check** the first entry, "Why I'm building a business six years early". It's published. Set `draft: true` to take it down while you rewrite it.
 - [ ] The four category descriptions in `site.config.json`.
+- [x] Published the How it works entry "How to read a single-line diagram" on 30 September 2026, with two diagrams and two credited photos.
 - [ ] Your first apprentice log: `content/journal/2026-09-26-first-apprentice-log.md` has the outline, with `[[FIRST_APPRENTICE_LOG_TOPIC]]` as the title. It stays a draft until you write it.
 
 ### Link preview image

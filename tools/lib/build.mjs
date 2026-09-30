@@ -176,6 +176,7 @@ export function build(options = {}) {
       url: post.url,
       category: post.category.slug,
       photos: post.photos,
+      photoSources: post.photoSources,
       images: post.images,
       complianceNote: post.complianceNote,
       safetyNote: post.safetyNote,

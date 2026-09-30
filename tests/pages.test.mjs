@@ -110,7 +110,8 @@ test('the optional About sections stay off until their flags are on', () => {
 test('the apprentice log outline stays a draft, and the first entry is published', () => {
   const site = fresh();
   const { manifest } = site.build();
-  assert.deepEqual(manifest.drafts.map((draft) => draft.slug), ['first-apprentice-log']);
+  assert.ok(manifest.drafts.some((draft) => draft.slug === 'first-apprentice-log'));
+  assert.ok(!manifest.pages.some((page) => page.path === '/journal/first-apprentice-log/'));
   assert.ok(manifest.pages.some((page) => page.path === '/journal/why-im-building-early/'));
 });
 

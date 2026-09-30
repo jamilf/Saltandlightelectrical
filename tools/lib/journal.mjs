@@ -5,9 +5,9 @@ import { parseFrontMatter } from './frontmatter.mjs';
 import { decodeEntities } from './html.mjs';
 import { markdownToHtml } from './markdown.mjs';
 import { stageForDate } from './milestones.mjs';
-import { SiteError, formatDate, isIsoDate, readText, slugify, walkFiles, wordCount } from './util.mjs';
+import { SiteError, formatDate, imageSize, isIsoDate, readText, slugify, walkFiles, wordCount } from './util.mjs';
 
-export const PHOTO_DECLARATIONS = ['none', 'own', 'employer-approved'];
+export const PHOTO_DECLARATIONS = ['none', 'own', 'employer-approved', 'licensed'];
 export const RESERVED_IDS = ['main', 'top', 'follow-the-build'];
 
 export function postSlug(file, data = {}) {
@@ -45,8 +45,10 @@ export function loadPosts({ root, config, milestones }) {
       local.push(`${where}: stage "${data.stage}" isn't in content/milestones.json. Use one of ${[...stageIds.keys()].join(', ')}.`);
     }
     if (data.updated != null && !isIsoDate(data.updated)) local.push(`${where}: updated must look like 2026-10-12.`);
-    if (data.photos != null && !PHOTO_DECLARATIONS.includes(data.photos)) {
-      local.push(`${where}: photos must be one of ${PHOTO_DECLARATIONS.join(', ')}.`);
+    // Photos can come from more than one place: "photos: own, licensed".
+    const photoSources = data.photos == null ? [] : String(data.photos).split(',').map((source) => source.trim()).filter(Boolean);
+    if (data.photos != null && (!photoSources.length || photoSources.some((source) => !PHOTO_DECLARATIONS.includes(source)) || (photoSources.includes('none') && photoSources.length > 1))) {
+      local.push(`${where}: photos must be one of ${PHOTO_DECLARATIONS.join(', ')}, or a list like "own, licensed".`);
     }
     if (!slug) local.push(`${where}: couldn't make a web address from the file name. Add "slug: my-post".`);
     if (local.length) {
@@ -59,6 +61,7 @@ export function loadPosts({ root, config, milestones }) {
       reservedIds: RESERVED_IDS,
       resolveUrl: (url, kind) =>
         kind === 'image' && !/^([a-z][a-z0-9+.-]*:|\/)/i.test(url) ? `/journal/${url.replace(/^\.\//, '')}` : url,
+      imageSize: (src) => (src.startsWith('/journal/media/') ? imageSize(join(root, 'content', src.slice(1))) : null),
     });
     const category = categories.get(data.category);
     const written = data.stage ? { stage: stageIds.get(data.stage), pinned: true } : stageForDate(milestones, data.date);
@@ -76,6 +79,7 @@ export function loadPosts({ root, config, milestones }) {
       stage: written.stage,
       stagePinned: written.pinned,
       photos: data.photos ?? null,
+      photoSources,
       complianceNote: typeof data.compliance_note === 'string' && data.compliance_note.trim() ? data.compliance_note.trim() : null,
       summary: typeof data.summary === 'string' && data.summary.trim() ? data.summary.trim() : firstSentence(plain),
       html: converted.html,

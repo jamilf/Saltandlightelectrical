@@ -35,7 +35,7 @@ try {
     `category: ${values.category}`,
     'summary: "[[JAMIL: one line for the journal list and link previews]]"',
     `stage: ${stage.id}`,
-    'photos: none                    # none, own or employer-approved',
+    'photos: none                    # none, own, employer-approved or licensed, or a list',
     'draft: true                     # delete this line when it is ready to publish',
     '---',
     '',

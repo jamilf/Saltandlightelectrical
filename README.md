@@ -34,14 +34,16 @@ date: 2026-10-12
 category: apprentice-log          # apprentice-log, how-it-works, tools-and-kit or building-the-business
 summary: One line for the journal list and link previews.
 stage: finding-apprenticeship     # the stage you're in, from content/milestones.json
-photos: none                      # none, own or employer-approved
+photos: none                      # none, own, employer-approved or licensed, or a list
 draft: true                       # delete this line to publish
 ---
 ```
 
 The body is Markdown: a blank line between paragraphs, `## ` for a heading, `- ` for a list, `[text](link)` for a link, and `![description](media/photo.jpg)` for a photo stored in `content/journal/media/`.
 
-Posts in How it works get the safety note automatically. A post with photos must say `photos: own` or `photos: employer-approved`, and the check fails on photos that carry GPS location data.
+Posts in How it works get the safety note automatically. A post with photos must say where they came from: `photos: own`, `photos: employer-approved` or `photos: licensed`, or a list like `photos: own, licensed`. Licensed photos need a `## Photo credits` section naming each photo's author, licence and source. The check fails on photos that carry GPS location data.
+
+An image on a line of its own becomes a figure, and the text in quotes after its address becomes the caption: `![A switchboard](media/board.jpg "Inside a switchboard")`.
 
 Each post links to the stage it was written in, and that stage's note on the road to launch lists its three newest posts. A category page stays out of search results until its first post.
 

@@ -1438,6 +1438,24 @@ img {
   margin-top: var(--space-6);
 }
 
+.post__figure {
+  max-width: var(--measure);
+  margin: var(--space-6) 0;
+}
+
+.post__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sheet);
+}
+
+.post__figure figcaption {
+  margin-top: var(--space-2);
+  color: var(--ink-soft);
+  font-size: var(--text-small);
+}
+
 .post__body blockquote {
   margin-left: 0;
   padding-left: var(--space-5);
